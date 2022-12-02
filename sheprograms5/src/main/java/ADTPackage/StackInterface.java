@@ -1,4 +1,4 @@
-package project5;
+package ADTPackage;
 
 /**
    An interface for the ADT stack.
