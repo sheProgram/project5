@@ -1,5 +1,4 @@
 package project5;
-import java.util.Iterator;
 
 import ADTPackage.*; // Classes that implement various ADTs
 /** 
@@ -14,7 +13,7 @@ public interface GraphAlgorithmsInterface<T>
        @param origin  An object that labels the origin vertex of the traversal.
        @return  A queue of labels of the vertices in the traversal, with
                 the label of the origin vertex at the queue's front. */
-    public QueueInterface<T> getBreadthFirstTraversal(T origin);
+   public QueueInterface<T> getBreadthFirstTraversal(T origin);
 
    /** Performs a depth-first traversal of this graph.
        @param origin  An object that labels the origin vertex of the traversal.

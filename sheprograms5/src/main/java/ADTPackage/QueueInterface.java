@@ -1,4 +1,5 @@
 package ADTPackage;
+
 /**
    An interface for the ADT queue.   
    @author Frank M. Carrano
@@ -28,3 +29,4 @@ public interface QueueInterface<T>
   /** Removes all entries from this queue. */
   public void clear();
 } // end QueueInterface
+
