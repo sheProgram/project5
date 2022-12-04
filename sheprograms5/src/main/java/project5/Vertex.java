@@ -80,9 +80,7 @@ public boolean isVisited() {
     return false;
 }
 
-@Override
-public boolean connect(VertexInterface<T> endVertex, double edgeWeight)
-{
+public boolean connect(VertexInterface<T> endVertex, double edgeWeight) {
    boolean result = false;
 
    if (!this.equals(endVertex))
@@ -107,22 +105,16 @@ public boolean connect(VertexInterface<T> endVertex, double edgeWeight)
    return result;
 } // end connect
 
-@Override
 public boolean connect(VertexInterface<T> endVertex)
 {
    return connect(endVertex, 0);
 } // end connect
 
-
-@Override
-// @author Frank M. Carrano, Timothy M. Henry
-// @version 5.0
-public Iterator<VertexInterface<T>> getNeighborIterator()
-{
+public Iterator<VertexInterface<T>> getNeighborIterator() {
    return new NeighborIterator();
 } // end getNeighborIterator
-private class NeighborIterator implements Iterator<VertexInterface<T>>
-{
+
+private class NeighborIterator implements Iterator<VertexInterface<T>> {
    private Iterator<Edge> edges;
    
    private NeighborIterator()
@@ -163,15 +155,11 @@ public Iterator<Double> getWeightIterator() {
     return null;
 }
 
-@Override
-public boolean hasNeighbor()
-{
+public boolean hasNeighbor() {
    return !edgeList.isEmpty();
 } // end hasNeighbor
 
-@Override
-public VertexInterface<T> getUnvisitedNeighbor()
-{
+public VertexInterface<T> getUnvisitedNeighbor() {
    VertexInterface<T> result = null;
 
    Iterator<VertexInterface<T>> neighbors = getNeighborIterator();
