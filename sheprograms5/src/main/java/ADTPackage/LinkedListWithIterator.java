@@ -50,18 +50,26 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 			nextNode = firstNode;
 		} // end default constructor
 
-        @Override
-        public boolean hasNext() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public T next() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-		
+public T next()
+   {
+      if (hasNext())
+      {
+         Node returnNode = nextNode;        // Get next node
+         nextNode = nextNode.getNextNode(); // Advance iterator
+         
+         return returnNode.getData();       // Return next entry in iteration
+      }
+      else
+         throw new NoSuchElementException("Illegal call to next(); " +
+                                          "iterator is after end of list.");
+   } // end next
+   
+   // 13.12
+   public boolean hasNext()
+   {
+      return nextNode != null;
+   } // end hasNext
+   
       // Implementations of the methods in the interface Iterator go here.
 
 	} // end IteratorForLinkedList
