@@ -78,34 +78,46 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
 	} // end add
 
 /* Implementations of other methods in DictionaryInterface.
-   . . .
    Private classes KeyIterator and ValueIterator (see Segment 21.20). >
    . . . */
     public V remove(K key) {
         if (key == null) {
            throw new IllegalArgumentException("Cannot add null to a dictionary.");
-        }
+        } // end if
         else {
             if (this.contains(key)) {
                 numberOfEntries--;
                 return this.getValue(key);
-            }
+            } // end if
             else {
                 return null;
+            } // end else
+        } // end else
+    } // end remove
+
+    public V getValue(K key) {
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (key.equals(currentNode.getKey())) {
+                return currentNode.getValue();
             }
-        }
-    }
+            currentNode = currentNode.getNextNode();
+        } // end while
+        return null;
+    } // end getValue
 
-   public V getValue(K key) {
-       // TODO Auto-generated method stub
-       return null;
-   }
-
-   @Override
-   public boolean contains(K key) {
-       // TODO Auto-generated method stub
-       return false;
-   }
+    public boolean contains(K key) {
+        boolean contains = false;
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (key.equals(currentNode.getKey())) {
+                contains = true;
+                break;
+            } // end if
+            currentNode = currentNode.getNextNode();
+        } // end while
+        return contains;
+    } // end contains
 
    @Override
    public Iterator<K> getKeyIterator() {
@@ -119,26 +131,21 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
        return null;
    }
 
-   public boolean isEmpty()
-   {
-      return lastIndex < 1;
-   } // end isEmpty
+    public boolean isEmpty() {
+        return lastIndex < 1;
+    } // end isEmpty
 
-   @Override
-   public int getSize() {
-    return lastIndex;
-   }
+    public int getSize() {
+        return lastIndex;
+    } // end getSize
 
-   @Override
-   public void clear() {
-       // TODO Auto-generated method stub
-       
-   }
-   /*    Constructors and the methods getKey, getValue, setValue, getNextNode,
-      and setNextNode are here. There is no setKey.
-      . . . */
-	private class Node
-	{
+    public void clear() {
+       initializeDataFields();
+    }
+
+   /* Constructors and the methods getKey, getValue, setValue, getNextNode,
+      and setNextNode are here. There is no setKey. */
+	private class Node {
 		private K key;
 		private V value;
 		private Node next;
