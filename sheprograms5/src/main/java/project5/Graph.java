@@ -44,41 +44,51 @@ public final class Graph<T> implements GraphInterface<T> {
         return traversalOrder;
     } // end getBreadthFirstTraversal
 
-    @Override
     public boolean addEdge(T begin, T end, double edgeWeight) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        boolean result = false;
+        VertexInterface<T> beginVertex = vertices.getValue(begin);
+        VertexInterface<T> endVertex = vertices.getValue(end);
+        if ( (beginVertex != null) && (endVertex != null) )
+           result = beginVertex.connect(endVertex, edgeWeight);
+        if (result)
+           edgeCount++;
+        return result;
+    } // end addEdge
 
-    @Override
     public boolean addEdge(T begin, T end) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        return addEdge(begin, end, 0);
+    } // end addEdge
 
-    @Override
     public boolean hasEdge(T begin, T end) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        boolean found = false;
+        VertexInterface<T> beginVertex = vertices.getValue(begin);
+        VertexInterface<T> endVertex = vertices.getValue(end);
+        if ( (beginVertex != null) && (endVertex != null) )
+        {
+           Iterator<VertexInterface<T>> neighbors = beginVertex.getNeighborIterator();
+           while (!found && neighbors.hasNext())
+           {
+              VertexInterface<T> nextNeighbor = neighbors.next();
+              if (endVertex.equals(nextNeighbor))
+                 found = true;
+           } // end while
+        } // end if
+        return found;
+    } // end hasEdge
 
-    @Override
     public boolean isEmpty() {
         return vertices.isEmpty();
     } // end isEmpty
     
-    @Override
     public void clear() {
         vertices.clear();
         edgeCount = 0;
     } // end clear
-    
-    @Override
+
     public int getNumberOfVertices() {
         return vertices.getSize();
     } // end getNumberOfVertices
     
-    @Override
     public int getNumberOfEdges() {
         return edgeCount;
     } // end getNumberOfEdges
@@ -89,21 +99,4 @@ public final class Graph<T> implements GraphInterface<T> {
         return null;
     }
 
-    @Override
-    public StackInterface<T> getTopologicalOrder() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getShortestPath(T begin, T end, StackInterface<T> path) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public double getCheapestPath(T begin, T end, StackInterface<T> path) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 } // end Graph
