@@ -74,9 +74,28 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K,V>{
 
     @Override
     public Iterator<K> getKeyIterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        return new KeyIterator();
+    } // end getKeyIterator
+    private class KeyIterator implements Iterator<K> {
+        Iterator<Entry<K, V>> localIterator;
+        
+        public KeyIterator() {
+            localIterator = bst.getInorderIterator();
+        } // end default constructor
+        
+        public boolean hasNext() {
+            return localIterator.hasNext();
+        } // end hasNext
+        
+        public K next() {
+            Entry<K, V> nextEntry = localIterator.next();
+            return nextEntry.getKey();
+        } // end next
+        
+        public void remove() {
+            throw new UnsupportedOperationException();
+        } // end remove
+    } // end KeyIterator
 
     @Override
     public Iterator<V> getValueIterator() {
