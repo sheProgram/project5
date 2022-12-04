@@ -7,7 +7,10 @@ import java.util.EmptyStackException;
 */
 public final class LinkedStack<T> implements StackInterface<T>
 {
-	private Node topNode; // References the first node in the chain
+	private T[] stack;
+   private int topIndex;
+
+   private Node topNode; // References the first node in the chain
   
    public LinkedStack()
    {
@@ -24,6 +27,7 @@ private void checkIntegrity()
 } // end checkIntegrity
 	private class Node
 	{
+      private T data; // Entry in stack
       private Node next; // Link to next node
       
       private Node(T dataPortion)
@@ -42,19 +46,19 @@ private void checkIntegrity()
       } // end getNextNode
 	} // end Node
 
-   public void push(T newEntry) {
+    public void push(T newEntry) {
       Node newNode = new Node(newEntry, topNode);
       topNode = newNode; 
-   }
+    }
 
-   public T pop() {
+    public T pop() {
       T top = peek();  // Might throw EmptyStackException
 
       // Assertion: topNode != null
       topNode = topNode.getNextNode();
    
       return top;
-   }
+    }
 
     @Override
     public T peek() {
@@ -73,6 +77,9 @@ private void checkIntegrity()
     @Override
     public void clear() {
       checkIntegrity();
-      stack.clear();
+      while (topIndex > -1){
+         stack[topIndex] = null;
+         topIndex--;
+      } // end while
    } // end clear
 } // end LinkedStack
