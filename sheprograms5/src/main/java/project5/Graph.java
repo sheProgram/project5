@@ -20,6 +20,7 @@ public final class Graph<T> implements GraphInterface<T> {
     }
 
     public QueueInterface<T> getBreadthFirstTraversal(T origin) {
+        resetVertices();
         QueueInterface<T> traversalOrder = new LinkedQueue<>();
         QueueInterface<VertexInterface<T>> vertexQueue = new LinkedQueue<>();
 
@@ -92,6 +93,17 @@ public final class Graph<T> implements GraphInterface<T> {
     public int getNumberOfEdges() {
         return edgeCount;
     } // end getNumberOfEdges
+
+    protected void resetVertices() {
+    Iterator<VertexInterface<T>> vertexIterator = vertices.getValueIterator();
+        while (vertexIterator.hasNext())
+        {
+            VertexInterface<T> nextVertex = vertexIterator.next();
+            nextVertex.unvisit();
+            nextVertex.setCost(0);
+            nextVertex.setPredecessor(null);
+        } // end while
+    } // end resetVertices
 
     @Override
     public QueueInterface<T> getDepthFirstTraversal(T origin) {
