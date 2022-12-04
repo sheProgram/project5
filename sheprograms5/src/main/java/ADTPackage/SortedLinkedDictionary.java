@@ -106,11 +106,18 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
         return null;
     } // end getValue
 
-   @Override
-   public boolean contains(K key) {
-       // TODO Auto-generated method stub
-       return false;
-   }
+    public boolean contains(K key) {
+        boolean contains = false;
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (key.equals(currentNode.getKey())) {
+                contains = true;
+                break;
+            } // end if
+            currentNode = currentNode.getNextNode();
+        } // end while
+        return contains;
+    } // end contains
 
    @Override
    public Iterator<K> getKeyIterator() {
@@ -124,24 +131,20 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
        return null;
    }
 
-   public boolean isEmpty()
-   {
-      return lastIndex < 1;
-   } // end isEmpty
+    public boolean isEmpty() {
+        return lastIndex < 1;
+    } // end isEmpty
 
-   @Override
-   public int getSize() {
-    return lastIndex;
-   }
+    public int getSize() {
+        return lastIndex;
+    } // end getSize
 
-   @Override
-   public void clear() {
+    public void clear() {
        // TODO Auto-generated method stub
-       
-   }
-   /*    Constructors and the methods getKey, getValue, setValue, getNextNode,
-      and setNextNode are here. There is no setKey.
-      . . . */
+    }
+
+   /* Constructors and the methods getKey, getValue, setValue, getNextNode,
+      and setNextNode are here. There is no setKey. */
 	private class Node
 	{
 		private K key;
