@@ -54,17 +54,19 @@ public final class LinkedStack<T> implements StackInterface<T>
       } // end setNextNode
 	} // end Node
 
-    @Override
-    public void push(T newEntry) {
-        // TODO Auto-generated method stub
-        
-    }
+   public void push(T newEntry) {
+      Node newNode = new Node(newEntry, topNode);
+      topNode = newNode; 
+   }
 
-    @Override
-    public T pop() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+   public T pop() {
+      T top = peek();  // Might throw EmptyStackException
+
+      // Assertion: topNode != null
+      topNode = topNode.getNextNode();
+   
+      return top;
+   }
 
     @Override
     public T peek() {
