@@ -102,12 +102,32 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
          next = nextNode;
       } // end setNextNode
 	} // end Node
-
-    @Override
+    private Node getNodeAt(int givenPosition)
+    {
+       // Assertion: (firstNode != null) &&
+       //            (1 <= givenPosition) && (givenPosition <= numberOfEntries)
+       Node currentNode = firstNode;
+       // Traverse the chain to locate the desired node
+       // (skipped if givenPosition is 1)
+       for (int counter = 1; counter < givenPosition; counter++)
+          currentNode = currentNode.getNextNode();
+       // Assertion: currentNode != null
+       return currentNode;
+    } // end getNodeAt
+    
     public void add(T newEntry) {
-        // TODO Auto-generated method stub
+           Node newNode = new Node(newEntry);
         
-    }
+           if (isEmpty())
+              firstNode = newNode;
+           else                              // Add to end of nonempty list
+           {
+              Node lastNode = getNodeAt(numberOfEntries);
+              lastNode.setNextNode(newNode); // Make last node reference new node
+           } // end if	
+           
+           numberOfEntries++;
+        } // end add
 
     @Override
     public void add(int newPosition, T newEntry) {
