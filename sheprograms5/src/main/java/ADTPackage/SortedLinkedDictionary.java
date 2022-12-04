@@ -78,28 +78,33 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
 	} // end add
 
 /* Implementations of other methods in DictionaryInterface.
-   . . .
    Private classes KeyIterator and ValueIterator (see Segment 21.20). >
    . . . */
     public V remove(K key) {
         if (key == null) {
            throw new IllegalArgumentException("Cannot add null to a dictionary.");
-        }
+        } // end if
         else {
             if (this.contains(key)) {
                 numberOfEntries--;
                 return this.getValue(key);
-            }
+            } // end if
             else {
                 return null;
-            }
-        }
-    }
+            } // end else
+        } // end else
+    } // end remove
 
-   public V getValue(K key) {
-       // TODO Auto-generated method stub
-       return null;
-   }
+    public V getValue(K key) {
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (key.equals(currentNode.getKey())) {
+                return currentNode.getValue();
+            }
+            currentNode = currentNode.getNextNode();
+        } // end while
+        return null;
+    } // end getValue
 
    @Override
    public boolean contains(K key) {
