@@ -81,22 +81,81 @@ public boolean isVisited() {
 }
 
 @Override
-public boolean connect(VertexInterface<T> endVertex, double edgeWeight) {
-    // TODO Auto-generated method stub
-    return false;
-}
+public boolean connect(VertexInterface<T> endVertex, double edgeWeight)
+{
+   boolean result = false;
+
+   if (!this.equals(endVertex))
+   {  // Vertices are distinct
+      Iterator<VertexInterface<T>> neighbors = getNeighborIterator();
+      boolean duplicateEdge = false;
+
+      while (!duplicateEdge && neighbors.hasNext())
+      {
+         VertexInterface<T> nextNeighbor = neighbors.next();
+         if (endVertex.equals(nextNeighbor))
+            duplicateEdge = true;
+      } // end while
+
+      if (!duplicateEdge)
+      {
+         edgeList.add(new Edge(endVertex, edgeWeight));
+         result = true;
+      } // end if
+   } // end if
+
+   return result;
+} // end connect
 
 @Override
-public boolean connect(VertexInterface<T> endVertex) {
-    // TODO Auto-generated method stub
-    return false;
-}
+public boolean connect(VertexInterface<T> endVertex)
+{
+   return connect(endVertex, 0);
+} // end connect
+
 
 @Override
-public Iterator<VertexInterface<T>> getNeighborIterator() {
-    // TODO Auto-generated method stub
-    return null;
-}
+// @author Frank M. Carrano, Timothy M. Henry
+// @version 5.0
+public Iterator<VertexInterface<T>> getNeighborIterator()
+{
+   return new NeighborIterator();
+} // end getNeighborIterator
+private class NeighborIterator implements Iterator<VertexInterface<T>>
+{
+   private Iterator<Edge> edges;
+   
+   private NeighborIterator()
+   {
+      edges = edgeList.getIterator();
+   } // end default constructor
+   
+   public boolean hasNext()
+   {
+      return edges.hasNext();
+   } // end hasNext
+   
+   public VertexInterface<T> next()
+   {
+      VertexInterface<T> nextNeighbor = null;
+      
+      if (edges.hasNext())
+      {
+         Edge edgeToNextNeighbor = edges.next();
+         nextNeighbor = edgeToNextNeighbor.getEndVertex();
+      }
+      else
+         throw new NoSuchElementException();
+      
+      return nextNeighbor;
+   } // end next
+   
+   public void remove()
+   {
+      throw new UnsupportedOperationException();
+   } // end remove
+} // end NeighborIterator
+
 
 @Override
 public Iterator<Double> getWeightIterator() {
@@ -105,16 +164,26 @@ public Iterator<Double> getWeightIterator() {
 }
 
 @Override
-public boolean hasNeighbor() {
-    // TODO Auto-generated method stub
-    return false;
-}
+public boolean hasNeighbor()
+{
+   return !edgeList.isEmpty();
+} // end hasNeighbor
 
 @Override
-public VertexInterface<T> getUnvisitedNeighbor() {
-    // TODO Auto-generated method stub
-    return null;
-}
+public VertexInterface<T> getUnvisitedNeighbor()
+{
+   VertexInterface<T> result = null;
+
+   Iterator<VertexInterface<T>> neighbors = getNeighborIterator();
+   while ( neighbors.hasNext() && (result == null) )
+   {
+      VertexInterface<T> nextNeighbor = neighbors.next();
+      if (!nextNeighbor.isVisited())
+         result = nextNeighbor;
+   } // end while
+
+   return result;
+} // end getUnvisitedNeighbor
 
 @Override
 public void setPredecessor(VertexInterface<T> predecessor) {
@@ -145,4 +214,5 @@ public double getCost() {
     // TODO Auto-generated method stub
     return 0;
 }
+
 } // end Vertex

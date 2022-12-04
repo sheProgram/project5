@@ -64,27 +64,24 @@ public final class Graph<T> implements GraphInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int getNumberOfVertices() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getNumberOfEdges() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
+        return vertices.isEmpty();
+    } // end isEmpty
+    
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        
-    }
+        vertices.clear();
+        edgeCount = 0;
+    } // end clear
+    
+    @Override
+    public int getNumberOfVertices() {
+        return vertices.getSize();
+    } // end getNumberOfVertices
+    
+    @Override
+    public int getNumberOfEdges() {
+        return edgeCount;
+    } // end getNumberOfEdges
 
     @Override
     public QueueInterface<T> getDepthFirstTraversal(T origin) {

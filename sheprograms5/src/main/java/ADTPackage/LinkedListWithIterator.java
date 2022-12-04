@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
    private Node firstNode;
-   private int  numberOfEntries;;
+   private int  numberOfEntries;
 
    public LinkedListWithIterator()
    {
@@ -67,7 +67,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 	
 	private class Node
 	{
-      private T    data; // Entry in list
+      private T data; // Entry in list
       private Node next; // Link to next node
       
       private Node(T dataPortion)
