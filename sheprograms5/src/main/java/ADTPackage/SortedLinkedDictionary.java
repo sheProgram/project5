@@ -15,9 +15,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
              implements DictionaryInterface<K, V>
 {
 	private Node firstNode; // Reference to first node of chain
-	private int  numberOfEntries; 
-    private int lastIndex; // Index of last entry and number of entries
-    
+	private int numberOfEntries; 
 	
 	public SortedLinkedDictionary()
 	{
@@ -119,29 +117,30 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
         return contains;
     } // end contains
 
-   @Override
-   public Iterator<K> getKeyIterator() {
-       // TODO Auto-generated method stub
-       return null;
-   }
+    public Iterator<K> getKeyIterator() {
+        return new KeyIterator();
+    }
 
-   @Override
-   public Iterator<V> getValueIterator() {
-       // TODO Auto-generated method stub
-       return null;
-   }
+    public Iterator<V> getValueIterator() {
+        return new ValueIterator();
+    }
 
     public boolean isEmpty() {
-        return lastIndex < 1;
+        if (numberOfEntries == 0) {
+            return true;
+        } 
+        else {
+            return false;
+        }
     } // end isEmpty
 
     public int getSize() {
-        return lastIndex;
+        return numberOfEntries;
     } // end getSize
 
     public void clear() {
        initializeDataFields();
-    }
+    } // end clear
 
    /* Constructors and the methods getKey, getValue, setValue, getNextNode,
       and setNextNode are here. There is no setKey. */
@@ -182,4 +181,51 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
             value = newValue;
         }
 	} // end Node
+
+    private class KeyIterator implements Iterator<K> {
+        private Node nextNode;
+
+        private KeyIterator() {
+            nextNode = firstNode;
+        }
+
+        public boolean hasNext() {
+            return nextNode != null;
+        }
+
+        public K next() {
+            K result;
+            if (hasNext()) {
+                result = nextNode.getKey();
+                nextNode = nextNode.getNextNode();
+            }  
+            else {
+                throw new IllegalCallerException("Illegal call to next(); iterator is after end of list");
+            }
+            return result;
+        }
+    } // end KeyIterator
+
+    private class ValueIterator implements Iterator<V> {
+        private Node nextNode;
+        private ValueIterator() {
+            nextNode = firstNode;
+        }
+
+        public boolean hasNext() {
+            return nextNode != null;
+        }
+
+        public V next() {
+            V result;
+            if (hasNext()) {
+                result = nextNode.getValue();
+                nextNode = nextNode.getNextNode();
+            }  
+            else {
+                throw new IllegalCallerException("Illegal call to next(); iterator is after end of list");
+            }
+            return result;
+        }
+    } // end ValueIterator 
 } // end SortedLinkedDictionary
