@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class SortedLinkedDictionary<K extends Comparable<? super K>, V> 
              implements DictionaryInterface<K, V>
 {
-	private Node firstNode; // Reference to first node of chain
+	private Node<K,V> firstNode; // Reference to first node of chain
 	private int numberOfEntries; 
 	
 	public SortedLinkedDictionary()
@@ -37,8 +37,8 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
       {
          // Search chain until you either find a node containing key
          // or locate where it should be
-         Node currentNode = firstNode;
-         Node nodeBefore = null;
+         Node<K,V> currentNode = firstNode;
+         Node<K,V> nodeBefore = null;
          
          while ( (currentNode != null) && (key.compareTo(currentNode.getKey()) > 0) )
          {
@@ -55,7 +55,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
          else // Key not in dictionary; add new node in proper order
          {
             // Assertion: key and value are not null
-            Node newNode = new Node(key, value); // Create new node
+            Node<K,V> newNode = new Node<K,V>(key, value, firstNode); // Create new node
             
             if (nodeBefore == null)
             {                                    // Add at beginning (includes empty chain)
@@ -94,7 +94,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
     } // end remove
 
     public V getValue(K key) {
-        Node currentNode = firstNode;
+        Node<K,V> currentNode = firstNode;
         while (currentNode != null) {
             if (key.equals(currentNode.getKey())) {
                 return currentNode.getValue();
@@ -106,7 +106,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
 
     public boolean contains(K key) {
         boolean contains = false;
-        Node currentNode = firstNode;
+        Node<K,V> currentNode = firstNode;
         while (currentNode != null) {
             if (key.equals(currentNode.getKey())) {
                 contains = true;
@@ -144,10 +144,10 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
 
    /* Constructors and the methods getKey, getValue, setValue, getNextNode,
       and setNextNode are here. There is no setKey. */
-	private class Node {
+	private class Node<k, v> {
 		private K key;
 		private V value;
-		private Node next;
+		private Node<K,V> next;
 
         private Node (K searchKey, V dataValue) {
             key = searchKey;
@@ -155,13 +155,13 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
             next = null;
         } // end constructor
 
-        private Node (K searchKey, V dataValue, Node nextNode) {
+        private Node (K searchKey, V dataValue, Node<K,V> nextNode) {
             key = searchKey;
             value = dataValue;
             next = nextNode;
         } // end constructor
 
-        private Node getNextNode() {
+        private Node<K,V> getNextNode() {
             return next;
         }
 
@@ -173,7 +173,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
             return value;
         } 
 
-        private void setNextNode(Node nextNode) {
+        private void setNextNode(Node<K,V> nextNode) {
             next = nextNode;
         }
 
@@ -183,7 +183,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
 	} // end Node
 
     private class KeyIterator implements Iterator<K> {
-        private Node nextNode;
+        private Node<K,V> nextNode;
 
         private KeyIterator() {
             nextNode = firstNode;
@@ -207,7 +207,7 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
     } // end KeyIterator
 
     private class ValueIterator implements Iterator<V> {
-        private Node nextNode;
+        private Node<K,V> nextNode;
         private ValueIterator() {
             nextNode = firstNode;
         }

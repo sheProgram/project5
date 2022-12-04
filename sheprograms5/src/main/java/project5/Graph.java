@@ -8,11 +8,15 @@ public final class Graph<T> implements GraphInterface<T> {
     private DictionaryInterface<T, VertexInterface<T>> vertices;
     private int edgeCount = 0;
 
-    // public Graph()
-    // {
-    //     DictionaryInterface<Character, Character> vertices = new SortedLinkedDictionary<Character, Character>();
-    //     edgeCount = 0;
-    // }
+    public Graph()
+    {
+        initializeDataFields();
+    }
+
+    private void initializeDataFields() {
+        // vertices = new SortedLinkedDictionary<K, V>();
+        edgeCount = 0;
+    }
 
     public boolean addVertex(T vertexLabel){
         VertexInterface<T> addResult = vertices.add(vertexLabel, new Vertex<>(vertexLabel));
