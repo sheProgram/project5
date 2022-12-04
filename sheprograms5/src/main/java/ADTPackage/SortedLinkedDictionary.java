@@ -140,13 +140,12 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
     } // end getSize
 
     public void clear() {
-       // TODO Auto-generated method stub
+       initializeDataFields();
     }
 
    /* Constructors and the methods getKey, getValue, setValue, getNextNode,
       and setNextNode are here. There is no setKey. */
-	private class Node
-	{
+	private class Node {
 		private K key;
 		private V value;
 		private Node next;
