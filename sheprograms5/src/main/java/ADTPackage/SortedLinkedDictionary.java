@@ -1,6 +1,6 @@
 package ADTPackage;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+//import java.util.NoSuchElementException;
 
 /**
    A class that implements the ADT dictionary by using a chain of linked nodes.
@@ -16,6 +16,8 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
 {
 	private Node firstNode; // Reference to first node of chain
 	private int  numberOfEntries; 
+    private int lastIndex; // Index of last entry and number of entries
+    
 	
 	public SortedLinkedDictionary()
 	{
@@ -110,16 +112,14 @@ public class SortedLinkedDictionary<K extends Comparable<? super K>, V>
        return null;
    }
 
-   @Override
-   public boolean isEmpty() {
-       // TODO Auto-generated method stub
-       return false;
-   }
+   public boolean isEmpty()
+   {
+      return lastIndex < 1;
+   } // end isEmpty
 
    @Override
    public int getSize() {
-       // TODO Auto-generated method stub
-       return 0;
+    return lastIndex;
    }
 
    @Override
