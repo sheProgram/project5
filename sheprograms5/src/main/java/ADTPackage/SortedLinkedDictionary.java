@@ -14,8 +14,12 @@ import java.util.Iterator;
 public class SortedLinkedDictionary<K extends Comparable<? super K>, V> 
              implements DictionaryInterface<K, V>
 {
+	private Entry<K, V>[] dictionary; // Array of entries sorted by search key
+	private int numberOfEntries; 
+   private boolean integrityOK = false;
+	private final static int DEFAULT_CAPACITY = 25;
+	private static final int MAX_CAPACITY = 10000;
 	private Node firstNode; // Reference to first node of chain
-	private int  numberOfEntries; 
     private int lastIndex; // Index of last entry and number of entries
     
 	
