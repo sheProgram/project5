@@ -14,6 +14,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
    private Node firstNode;
    private int  numberOfEntries;
+   private boolean integrityOK = false;
 
    public LinkedListWithIterator()
    {
@@ -149,39 +150,70 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 
     @Override
     public T replace(int givenPosition, T newEntry) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        // Assertion: !isEmpty()
+        Node desiredNode = getNodeAt(givenPosition);
+        T originalEntry = desiredNode.getData();
+        desiredNode.setData(newEntry);
+        return originalEntry;
+    } else
+      throw new IndexOutOfBoundsException(
+        "Illegal position given to replace operation.");
+    } // end replace
 
     @Override
     public T getEntry(int givenPosition) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        // Assertion: !isEmpty()
+        return getNodeAt(givenPosition).getData();
+        } else
+        throw new IndexOutOfBoundsException(
+        "Illegal position given to getEntry operation.");
+    } // end getEntry
 
     @Override
     public T[] toArray() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        checkIntegrity();
+        // The cast is safe because the new array contains null entries.
+        @SuppressWarnings("unchecked")
+        T[] result = (T[])new Object[numberOfEntries]; // Unchecked cast
 
-    @Override
+        for (int index = 0; index < numberOfEntries; index++) 
+        {
+            //result[index] = bag[index];
+        } // end for
+            
+        return result;
+    } // end toArray
+
+    // Throws an exception if this object is not initialized.
+    private void checkIntegrity() {
+      if (!integrityOK)
+         throw new SecurityException("ArrayBag object is corrupt.");
+    } // end checkIntegrity
+
     public boolean contains(T anEntry) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        boolean found = false;
+        Node currentNode = firstNode;
+        
+        while (!found && (currentNode != null))
+        {
+           if (anEntry.equals(currentNode.getData()))
+              found = true;
+           else
+              currentNode = currentNode.getNextNode();
+        } // end while
+        
+        return found;
+    } // end contains
 
-    @Override
     public int getLength() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+        return numberOfEntries;
+    } // end getLength
 
-    @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        return numberOfEntries == 0; 
+    } // end isEmpty
 } // end LinkedListWithIterator
 
 
