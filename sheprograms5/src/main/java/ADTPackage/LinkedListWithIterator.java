@@ -139,9 +139,7 @@ public T next()
         } // end add
 
     @Override
-    public void add(int newPosition, T newEntry) {
-        // TODO Auto-generated method stub
-        
+    public void add(int newPosition, T newEntry) {        
     }
 
     @Override
@@ -171,13 +169,10 @@ public T next()
                    "Illegal position given to remove operation.");
     }
 
-    @Override
-    public void clear() {
-        // TODO Auto-generated method stub
-        
+   
+    public void clear() {        
     }
-
-    @Override
+//hi
     public T replace(int givenPosition, T newEntry) {
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
         // Assertion: !isEmpty()

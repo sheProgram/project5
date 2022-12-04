@@ -141,9 +141,7 @@ private class NeighborIterator implements Iterator<VertexInterface<T>> {
 } // end NeighborIterator
 
 
-@Override
 public Iterator<Double> getWeightIterator() {
-    // TODO Auto-generated method stub
     return null;
 }
 
