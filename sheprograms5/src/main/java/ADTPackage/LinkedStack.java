@@ -68,19 +68,21 @@ public final class LinkedStack<T> implements StackInterface<T>
 
     @Override
     public T peek() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+      checkIntegrity();
+      if (isEmpty())
+         throw new EmptyStackException();
+      else
+      return stack[topIndex];
+   } // end peek
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+      return topIndex < 0;
+   } // end isEmpty
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        
-    }
+      checkIntegrity();
+      stack.clear();
+   } // end clear
 } // end LinkedStack
