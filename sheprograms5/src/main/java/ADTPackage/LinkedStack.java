@@ -27,7 +27,6 @@ private void checkIntegrity()
 } // end checkIntegrity
 	private class Node
 	{
-      private T data; // Entry in stack
       private Node next; // Link to next node
       
       private Node(T dataPortion)
