@@ -16,7 +16,12 @@ public final class LinkedStack<T> implements StackInterface<T>
   
 //  < Implementations of the stack operations go here. >
 //  . . .
-
+private boolean integrityOK = false;
+private void checkIntegrity()
+{
+   if (!integrityOK)
+      throw new SecurityException("ArrayBag object is corrupt.");
+} // end checkIntegrity
 	private class Node
 	{
       private T    data; // Entry in stack
