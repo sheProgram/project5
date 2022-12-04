@@ -10,7 +10,7 @@ public final class Graph<T> implements GraphInterface<T> {
 
     public Graph()
     {
-        vertices = new SortedLinkedDictionary();
+        DictionaryInterface<Character, Character> vertices = new SortedLinkedDictionary<Character, Character>();
         edgeCount = 0;
     }
 
