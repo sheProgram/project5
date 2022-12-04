@@ -3,32 +3,74 @@ package ADTPackage;
 import java.util.Iterator;
 
 public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K,V>{
+    private Node firstNode; // Reference to first node of chain
+    private int numberOfEntries;
+
     public UnsortedLinkedDictionary() {
-        
+        initializeDataFields();
     }
 
-    @Override
+    private void initializeDataFields()
+    {
+        firstNode = null;
+        numberOfEntries = 0;
+    }
+
+    // <Implementations of methods in DictionaryInterface>
     public V add(K key, V value) {
-        // TODO Auto-generated method stub
-        return null;
+        if ((key == null) || (value == null)) {
+            throw new IllegalArgumentException("Error! Cannot add null to dictionary!");
+        }
+        else {
+            if (this.contains(key)) {
+                return this.getValue(key);
+            }
+            else {
+                Node newNode = new Node(key, value, firstNode);
+                firstNode = newNode;
+                numberOfEntries++;
+                return null;
+            }
+        }
     }
 
-    @Override
     public V remove(K key) {
-        // TODO Auto-generated method stub
-        return null;
+        if (key == null) {
+            throw new IllegalArgumentException("Error! Cannot add null to dictionary!");
+        }
+        else {
+            if (this.contains(key)) {
+                numberOfEntries--;
+                return this.getValue(key);
+            }
+            else {
+                return null;
+            }
+        }
     }
 
-    @Override
     public V getValue(K key) {
-        // TODO Auto-generated method stub
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (key.equals(currentNode.getKey())) {
+                return currentNode.getValue();
+            }
+            currentNode = currentNode.getNextNode();
+        }
         return null;
     }
 
-    @Override
     public boolean contains(K key) {
-        // TODO Auto-generated method stub
-        return false;
+        boolean contains = false;
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (key.equals(currentNode.getKey())) {
+                contains = true;
+                break;
+            }
+            currentNode = currentNode.getNextNode();
+        }
+        return contains;
     }
 
     @Override
@@ -43,21 +85,50 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K,V>{
         return null;
     }
 
-    @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        if (numberOfEntries == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
-    @Override
     public int getSize() {
-        // TODO Auto-generated method stub
-        return 0;
+        return numberOfEntries;
     }
 
-    @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        initializeDataFields();
     }
-}
+
+    private class Node {
+        private K key;
+        private V value;
+        private Node next;
+
+        private Node (K searchKey, V dataValue) {
+            key = searchKey;
+            value = dataValue;
+            next = null;
+        } // end constructor
+
+        private Node (K searchKey, V dataValue, Node nextNode) {
+            key = searchKey;
+            value = dataValue;
+            next = nextNode;
+        } // end constructor
+
+        private Node getNextNode() {
+            return next;
+        }
+
+        private K getKey() {
+            return key;
+        }
+
+        private V getValue() {
+            return value;
+        } 
+    } // end Node
+} // end UnsortedLinkedDictionary
