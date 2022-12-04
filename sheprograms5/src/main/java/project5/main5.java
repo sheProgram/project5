@@ -29,6 +29,9 @@ public class main5 {
         pgraph.addEdge('F', 'C');
         pgraph.addEdge('C', 'B');
 
+
+        System.out.println("Breadth First Traversal: \n" +pgraph.getBreadthFirstTraversal('A'));
+        System.out.println("Depth first Traversal: \n" + pgraph.getDepthFirstTraversal('A'));
     
     }
 }
