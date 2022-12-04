@@ -56,28 +56,20 @@ class Vertex<T> implements VertexInterface<T>
       } // end getWeight
    } // end Edge
 
-@Override
 public T getLabel() {
-    // TODO Auto-generated method stub
-    return null;
+    return label;
 }
 
-@Override
 public void visit() {
-    // TODO Auto-generated method stub
-    
+visited=true;    
 }
 
-@Override
 public void unvisit() {
-    // TODO Auto-generated method stub
-    
+visited=false;    
 }
 
-@Override
 public boolean isVisited() {
-    // TODO Auto-generated method stub
-    return false;
+    return visited;
 }
 
 public boolean connect(VertexInterface<T> endVertex, double edgeWeight) {
@@ -173,34 +165,25 @@ public VertexInterface<T> getUnvisitedNeighbor() {
    return result;
 } // end getUnvisitedNeighbor
 
-@Override
 public void setPredecessor(VertexInterface<T> predecessor) {
-    // TODO Auto-generated method stub
-    
+   previousVertex=predecessor;    
 }
 
-@Override
+
 public VertexInterface<T> getPredecessor() {
-    // TODO Auto-generated method stub
-    return null;
+   return previousVertex;
 }
 
-@Override
 public boolean hasPredecessor() {
-    // TODO Auto-generated method stub
-    return false;
+   return previousVertex != null;
 }
 
-@Override
 public void setCost(double newCost) {
-    // TODO Auto-generated method stub
-    
+cost=newCost;    
 }
 
-@Override
 public double getCost() {
-    // TODO Auto-generated method stub
-    return 0;
+   return cost;
 }
 
 } // end Vertex
