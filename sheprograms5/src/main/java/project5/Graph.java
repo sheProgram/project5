@@ -14,7 +14,7 @@ public final class Graph<T> implements GraphInterface<T> {
     }
 
     private void initializeDataFields() {
-        // vertices = new SortedLinkedDictionary<K, V>();
+        //vertices = new SortedLinkedDictionary<T, VertexInterface<T>>();
         edgeCount = 0;
     }
 
