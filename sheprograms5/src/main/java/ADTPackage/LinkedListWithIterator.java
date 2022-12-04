@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
    private Node firstNode;
-   private int  numberOfEntries;
+   private int numberOfEntries;
 
    public LinkedListWithIterator()
    {
@@ -129,15 +129,26 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 
     @Override
     public T replace(int givenPosition, T newEntry) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        // Assertion: !isEmpty()
+        Node desiredNode = getNodeAt(givenPosition);
+        T originalEntry = desiredNode.getData();
+        desiredNode.setData(newEntry);
+        return originalEntry;
+    } else
+      throw new IndexOutOfBoundsException(
+        "Illegal position given to replace operation.");
+    } // end replace
 
     @Override
     public T getEntry(int givenPosition) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        // Assertion: !isEmpty()
+        return getNodeAt(givenPosition).getData();
+        } else
+        throw new IndexOutOfBoundsException(
+        "Illegal position given to getEntry operation.");
+    } // end getEntry
 
     @Override
     public T[] toArray() {
