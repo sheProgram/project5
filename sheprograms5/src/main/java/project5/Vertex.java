@@ -87,13 +87,37 @@ class Vertex<T> implements VertexInterface<T>
 
     public boolean hasNeighbor()
     {
-        return false;
+        return !edgeList.isEmpty();
     }
 
     public VertexInterface<T> getUnvisitedNeighbor()
     {
-        return null;
+        VertexInterface<T> result = null;
+        Iterator<VertexInterface<T>> neighbors = getNeighborIterator();
+        while (neighbors.hasNext() && (result == null) ) {
+        VertexInterface<T> nextNeighbor = neighbors.next();
+            if (!nextNeighbor.isVisited()) {
+                result = nextNeighbor;
+            }
+        } // end while
+        return result;
     }
+
+    public boolean equals(Object other)
+    {
+        boolean result;
+        if ((other == null) || (getClass() != other.getClass())) {
+            result = false;
+        } // end if
+        else
+        { // The cast is safe within this else clause
+            @SuppressWarnings("unchecked")
+            Vertex<T> otherVertex = (Vertex<T>)other;
+            result = label.equals(otherVertex.label);
+        } // end else
+        return result;
+    } // end equals
+
 
     public void setPredecessor(VertexInterface<T> predecessor)
     {
@@ -170,8 +194,9 @@ class Vertex<T> implements VertexInterface<T>
                 Edge edgeToNextNeighbor = edges.next();
                 nextNeighbor = edgeToNextNeighbor.getEndVertex();
             }
-            else
+            else {
                 throw new NoSuchElementException();
+            }
             return nextNeighbor;
         }
 
