@@ -57,12 +57,5 @@ public interface BasicGraphInterface<T>
 
    /** Removes all vertices and edges from this graph resulting in an empty graph. */
    public void clear();
-/**
-   An interface of methods that create, manipulate, and process a graph.
-   
-   @author Frank M. Carrano
-   @author Timothy M. Henry
-   @version 5.0
-*/
 } // end BasicGraphInterface
 
