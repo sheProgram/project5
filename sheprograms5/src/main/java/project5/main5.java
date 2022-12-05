@@ -37,19 +37,19 @@ public class main5 {
         // System.out.println(graph.getDepthFirstTraversal("A"));
 
         QueueInterface<String> breadthFirstTravel = graph.getBreadthFirstTraversal("A");
-        System.out.print("Breadth First Travel: ");
+        System.out.println("Breadth First Traversal: ");
         while(!breadthFirstTravel.isEmpty())
         {
-            System.out.print(breadthFirstTravel.dequeue() + ", ");
+            System.out.println(breadthFirstTravel.dequeue() + ", ");
         }
 
         System.out.println("");
 
         QueueInterface<String> depthFirstTravel = graph.getDepthFirstTraversal("A");
-        System.out.print("Depth First Travel: ");
+        System.out.println("Depth First Traversal: ");
         while(!depthFirstTravel.isEmpty())
         {
-            System.out.print(depthFirstTravel.dequeue() + ", ");
+            System.out.println(depthFirstTravel.dequeue() + ", ");
         }
     }
 }
