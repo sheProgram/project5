@@ -12,7 +12,7 @@ import java.util.Iterator;
    @version 5.0
 */
 public class SortedLinkedDictionary<K extends Comparable<? super K>, V> 
-             implements DictionaryInterface<K, V>
+             implements DictionaryInterface<K,V>
 {
 	private Node<K,V> firstNode; // Reference to first node of chain
 	private int numberOfEntries; 
