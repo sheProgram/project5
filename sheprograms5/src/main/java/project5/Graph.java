@@ -16,6 +16,7 @@ public final class Graph<T> implements GraphInterface<T> {
     {
         initializeDataFields();
     }
+
     public Graph(int n)
     {
         edges = new boolean[n][n]; // All values initially false.
@@ -24,11 +25,8 @@ public final class Graph<T> implements GraphInterface<T> {
         numberOfVisitedVertices = 0;
     }
 
-
-
-
     private void initializeDataFields() {
-        //vertices = new SortedLinkedDictionary<T, VertexInterface<T>>();
+        //vertices = new UnsortedLinkedDictionary<>();
         edgeCount = 0;
     }
 
