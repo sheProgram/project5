@@ -3,14 +3,14 @@ package project5;
 import java.util.Iterator;
 import ADTPackage.*;
 
-public class Graph<T> implements GraphInterface<T>
+public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
 {
 	private DictionaryInterface<T, VertexInterface<T>> vertices;
 	private int edgeCount;
 	
 	public Graph()
 	{
-		vertices = new SortedArrayDictionary<T, VertexInterface<T>>();
+		vertices = new SortedArrayDictionary<>();
 		edgeCount = 0;
 	} // end default constructor
 
