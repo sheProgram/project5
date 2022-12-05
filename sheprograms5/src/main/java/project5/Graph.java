@@ -136,7 +136,7 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
             }
             else
                 vertexStack.pop();
-            }
+        }
         return traversalOrder;
     }
 

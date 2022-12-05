@@ -29,18 +29,11 @@ public class main5 {
         graph.addEdge("C", "B");
         graph.addEdge("I", "F");
 
-
-        //prints out breadth first and depth first traversal
-        // System.out.println("Breadth First Traversal: ");
-        // System.out.println(graph.getBreadthFirstTraversal("A"));
-        // System.out.println("\nDepth first Traversal: ");
-        // System.out.println(graph.getDepthFirstTraversal("A"));
-
         QueueInterface<String> breadthFirstTraversal = graph.getBreadthFirstTraversal("A");
         System.out.println("Breadth First Traversal: ");
         while(!breadthFirstTraversal.isEmpty())
         {
-            System.out.println(breadthFirstTraversal.dequeue() + ", ");
+            System.out.print(breadthFirstTraversal.dequeue() + "-> ");
         }
 
         System.out.println("");
@@ -49,7 +42,7 @@ public class main5 {
         System.out.println("Depth First Traversal: ");
         while(!depthFirstTraversal.isEmpty())
         {
-            System.out.println(depthFirstTraversal.dequeue() + ", ");
+            System.out.println(depthFirstTraversal.dequeue() + "-> ");
         }
     }
 }
