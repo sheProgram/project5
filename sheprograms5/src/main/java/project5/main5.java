@@ -1,4 +1,5 @@
 package project5;
+import ADTPackage.*;
 public class main5 {
     public static void main (String[] args){
         GraphInterface<String> graph = new Graph<>();
@@ -30,9 +31,25 @@ public class main5 {
 
 
         //prints out breadth first and depth first traversal
-        System.out.println("Breadth First Traversal: ");
-        System.out.println(graph.getBreadthFirstTraversal("A"));
-        System.out.println("\nDepth first Traversal: ");
-        System.out.println(graph.getDepthFirstTraversal("A"));
+        // System.out.println("Breadth First Traversal: ");
+        // System.out.println(graph.getBreadthFirstTraversal("A"));
+        // System.out.println("\nDepth first Traversal: ");
+        // System.out.println(graph.getDepthFirstTraversal("A"));
+
+        QueueInterface<String> breadthFirstTravel = graph.getBreadthFirstTraversal("A");
+        System.out.print("Breadth First Travel: ");
+        while(!breadthFirstTravel.isEmpty())
+        {
+            System.out.print(breadthFirstTravel.dequeue() + ", ");
+        }
+
+        System.out.println("");
+
+        QueueInterface<String> depthFirstTravel = graph.getDepthFirstTraversal("A");
+        System.out.print("Depth First Travel: ");
+        while(!depthFirstTravel.isEmpty())
+        {
+            System.out.print(depthFirstTravel.dequeue() + ", ");
+        }
     }
 }
