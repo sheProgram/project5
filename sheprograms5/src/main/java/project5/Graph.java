@@ -5,13 +5,13 @@ import ADTPackage.*;
 
 public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
 {
-	private DictionaryInterface<T, VertexInterface<T>> vertices;
-	private int edgeCount;
-	
-	public Graph()
-	{
-		vertices = new SortedArrayDictionary<>();
-		edgeCount = 0;
+    private DictionaryInterface<T, VertexInterface<T>> vertices;
+    private int edgeCount;
+
+    public Graph()
+    {
+        vertices = new SortedArrayDictionary<>();
+        edgeCount = 0;
 	} // end default constructor
 
     public boolean addVertex(T vertexLabel)
@@ -26,9 +26,9 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
         VertexInterface<T> beginVertex = vertices.getValue(begin);
         VertexInterface<T> endVertex = vertices.getValue(end);
         if ((beginVertex != null) && (endVertex != null))
-            result = beginVertex.connect(endVertex, edgeWeight);
+           result = beginVertex.connect(endVertex, edgeWeight);
         if (result)
-            edgeCount++;
+           edgeCount++;
         return result;
     }
 
@@ -44,12 +44,12 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
         VertexInterface<T> endVertex = vertices.getValue(end);
         if ((beginVertex != null) && (endVertex != null))
         {
-            Iterator<VertexInterface<T>> neighbors = beginVertex.getNeighborIterator();
-            while (!found && neighbors.hasNext())
-            {
-                VertexInterface<T> nextNeighbor = neighbors.next();
-                if (endVertex.equals(nextNeighbor))
-                    found = true;
+           Iterator<VertexInterface<T>> neighbors = beginVertex.getNeighborIterator();
+           while (!found && neighbors.hasNext())
+           {
+              VertexInterface<T> nextNeighbor = neighbors.next();
+              if (endVertex.equals(nextNeighbor))
+                 found = true;
             }
         }
         return found;
@@ -59,12 +59,12 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
     {
         return vertices.isEmpty();
     }
-
+    
     public int getNumberOfVertices()
     {
         return vertices.getSize();
     }
-
+    
     public int getNumberOfEdges()
     {
         return edgeCount;
@@ -78,7 +78,7 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
 
     protected void resetVertices()
     {
-        Iterator<VertexInterface<T>> vertexIterator = vertices.getValueIterator();
+    Iterator<VertexInterface<T>> vertexIterator = vertices.getValueIterator();
         while (vertexIterator.hasNext())
         {
             VertexInterface<T> nextVertex = vertexIterator.next();
@@ -136,8 +136,8 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
             }
             else
                 vertexStack.pop();
-        }
+            }
         return traversalOrder;
     }
 
-}
+    }
