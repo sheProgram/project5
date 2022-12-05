@@ -33,8 +33,7 @@ public class main5 {
         System.out.println("Breadth First Traversal: ");
         while(!breadthFirstTraversal.isEmpty())
         {
-            String breadthItems = breadthFirstTraversal.dequeue();
-            System.out.print(breadthItems + "--> ");
+            System.out.println(breadthFirstTraversal.dequeue() + ", ");
         }
 
         System.out.println("");
@@ -43,7 +42,7 @@ public class main5 {
         System.out.println("Depth First Traversal: ");
         while(!depthFirstTraversal.isEmpty())
         {
-            System.out.println(depthFirstTraversal.dequeue() + ", ");
+            System.out.println(depthFirstTraversal.dequeue() + "-> ");
         }
     }
 }
