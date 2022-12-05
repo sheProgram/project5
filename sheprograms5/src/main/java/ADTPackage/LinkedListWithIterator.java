@@ -12,32 +12,159 @@ import java.util.NoSuchElementException;
 */
 public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
-   private Node firstNode;
-   private int  numberOfEntries;
-   private boolean integrityOK = false;
+   private Node<T> firstNode;
+   private int numberOfEntries;
 
-   public LinkedListWithIterator()
-   {
-      initializeDataFields();
-   } // end default constructor
+    public LinkedListWithIterator()
+    {
+        firstNode = null;
+        numberOfEntries = 0;
+    } // end default constructor
 
-   private void initializeDataFields()
-   {
-       firstNode = null;
-       numberOfEntries = 0;
-   }
+    public void add(T newEntry)
+    {
+        Node<T> newNode = new Node<>(newEntry);
+        if (isEmpty())
+        {
+            firstNode = newNode;
+        }
+        else
+        {
+            Node<T> lastNode = getNodeAt(numberOfEntries);
+            lastNode.setNextNode(newNode);
+        }
+        numberOfEntries++;
+    }
 
-/*	< Implementations of the methods of the ADT list go here;
-     you can see them in Chapter 12, beginning at Segment 12.7 >
-   . . . */
-   public void clear() {      
-      initializeDataFields();  
-   }
+    public void add(int newPosition, T newEntry)
+    {
+        if ((newPosition >= 1) && (newPosition <= numberOfEntries + 1))
+        {
+            Node<T> newNode = new Node<>(newEntry);
+            if (newPosition == 1)
+            {
+                newNode.setNextNode(firstNode);
+                firstNode = newNode;
+            }
+            else
+            {
+                Node<T> nodeBefore = getNodeAt(newPosition - 1);
+                Node<T> nodeAfter = nodeBefore.getNextNode();
+                newNode.setNextNode(nodeAfter);
+                nodeBefore.setNextNode(newNode);
+            }
+        }
+    }
 
-   public Iterator<T> iterator()
-   {
-	   return new IteratorForLinkedList();
-   } // end iterator
+    private Node<T> getNodeAt(int givenPosition)
+    {
+        Node<T> currentNode = firstNode;
+        for (int counter = 1; counter < givenPosition; counter++)
+            currentNode = currentNode.getNextNode();
+        return currentNode;
+    }
+
+    public T remove(int givenPosition)
+    {
+        T result = null;
+        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
+        {
+            if (givenPosition == 1)
+            {
+                result = firstNode.getData();
+                firstNode = firstNode.getNextNode();
+            }
+            else
+            {
+                Node<T> nodeBefore = getNodeAt(givenPosition - 1);
+                Node<T> nodeToRemove = nodeBefore.getNextNode();
+                result = nodeToRemove.getData();
+                Node<T> nodeAfter = nodeToRemove.getNextNode();
+                nodeBefore.setNextNode(nodeAfter);
+            }
+            numberOfEntries--;
+            return result;
+        }
+        else
+            throw new IndexOutOfBoundsException("Illegal position given to remove operation.");
+    }
+
+    public void clear()
+    {
+        firstNode = null;
+        numberOfEntries = 0;
+    }
+
+    public T replace(int givenPosition, T newEntry)
+    {
+        if ((givenPosition >= 1 && (givenPosition <= numberOfEntries)))
+        {
+            Node<T> desiredNode = getNodeAt(givenPosition);
+            T originalEntry = desiredNode.getData();
+            desiredNode.setData(newEntry);
+            return originalEntry;
+        }
+        else
+            throw new IndexOutOfBoundsException("Illegal position given to replace operation.");
+    }
+
+    public T getEntry(int givenPosition)
+    {
+        if ((givenPosition >= 1 && (givenPosition <= numberOfEntries)))
+        {
+            return getNodeAt(givenPosition).getData();
+        }
+        else
+            throw new IndexOutOfBoundsException("Illegal position given to getEntry operation.");
+    }
+
+    public T[] toArray()
+    {
+        @SuppressWarnings("unchecked")
+        T[] result = (T[]) new Object[numberOfEntries];
+        int index = 0;
+        Node<T> currentNode = firstNode;
+        while ((index < numberOfEntries) && (currentNode != null))
+        {
+            result[index] = currentNode.getData();
+            currentNode = currentNode.getNextNode();
+            index++;
+        }
+        return result;
+    }
+
+    public boolean contains(T anEntry)
+    {
+        boolean found = false;
+        Node<T> currentNode = firstNode;
+        while (!found && (currentNode != null))
+        {
+            if (anEntry.equals(currentNode.getData()))
+            {
+                found = true;
+            }
+            else
+            {
+                currentNode = currentNode.getNextNode();
+            }
+        }
+        return found;
+    }
+
+    public int getLength()
+    {
+        return numberOfEntries;
+    }
+
+    public boolean isEmpty()
+    {
+        return firstNode == null;
+    }
+   
+    public Iterator<T> iterator()
+    {
+        return new IteratorForLinkedList();
+    } // end iterator
 
 	public Iterator<T> getIterator()
 	{
@@ -46,201 +173,66 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
    
 	private class IteratorForLinkedList implements Iterator<T>
 	{
-      private Node nextNode;
+        private Node<T> nextNode;
 
 		private IteratorForLinkedList()
 		{
 			nextNode = firstNode;
 		} // end default constructor
+		
+        public boolean hasNext()
+        {
+            return nextNode != null;
+        }
 
-public T next()
-   {
-      if (hasNext())
-      {
-         Node returnNode = nextNode;        // Get next node
-         nextNode = nextNode.getNextNode(); // Advance iterator
-         
-         return returnNode.getData();       // Return next entry in iteration
-      }
-      else
-         throw new NoSuchElementException("Illegal call to next(); " +
-                                          "iterator is after end of list.");
-   } // end next
-   
-   // 13.12
-   public boolean hasNext()
-   {
-      return nextNode != null;
-   } // end hasNext
-   
-      // Implementations of the methods in the interface Iterator go here.
-
+        public T next()
+        {
+            if (hasNext())
+            {
+                Node<T> returnNode = nextNode;
+                nextNode = nextNode.next;
+                return returnNode.getData();
+            }
+            else
+                throw new NoSuchElementException();
+        }
 	} // end IteratorForLinkedList
 	
-	private class Node
+	private class Node<T>
 	{
-      private T data; // Entry in list
-      private Node next; // Link to next node
-      
-      private Node(T dataPortion)
-      {
-         data = dataPortion;
-         next = null;
-      } // end constructor
-      
-      private Node(T dataPortion, Node nextNode)
-      {
-         data = dataPortion;
-         next = nextNode;
-      } // end constructor
-      
-      private T getData()
-      {
-         return data;
-      } // end getData
-      
-      private void setData(T newData)
-      {
-         data = newData;
-      } // end setData
-      
-      private Node getNextNode()
-      {
-         return next;
-      } // end getNextNode
-      
-      private void setNextNode(Node nextNode)
-      {
-         next = nextNode;
-      } // end setNextNode
+        private T data; // Entry in list
+        private Node<T> next; // Link to next node
+        
+        private Node(T dataPortion)
+        {
+            data = dataPortion;
+            next = null;
+        } // end constructor
+        
+        private Node(T dataPortion, Node<T> nextNode)
+        {
+            data = dataPortion;
+            next = nextNode;
+        } // end constructor
+        
+        private T getData()
+        {
+            return data;
+        } // end getData
+        
+        private void setData(T newData)
+        {
+            data = newData;
+        } // end setData
+        
+        private Node<T> getNextNode()
+        {
+            return next;
+        } // end getNextNode
+        
+        private void setNextNode(Node<T> nextNode)
+        {
+            next = nextNode;
+        } // end setNextNode
 	} // end Node
-    private Node getNodeAt(int givenPosition)
-    {
-       // Assertion: (firstNode != null) &&
-       //            (1 <= givenPosition) && (givenPosition <= numberOfEntries)
-       Node currentNode = firstNode;
-       // Traverse the chain to locate the desired node
-       // (skipped if givenPosition is 1)
-       for (int counter = 1; counter < givenPosition; counter++)
-          currentNode = currentNode.getNextNode();
-       // Assertion: currentNode != null
-       return currentNode;
-    } // end getNodeAt
-    
-    public void add(T newEntry) {
-           Node newNode = new Node(newEntry);
-        
-           if (isEmpty())
-              firstNode = newNode;
-           else                              // Add to end of nonempty list
-           {
-              Node lastNode = getNodeAt(numberOfEntries);
-              lastNode.setNextNode(newNode); // Make last node reference new node
-           } // end if	
-           
-           numberOfEntries++;
-        } // end add
-
-    @Override
-    public void add(int newPosition, T newEntry) {        
-    }
-
-    @Override
-    public T remove(int givenPosition) {
-      T result = null;                           // Return value
-      if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
-      {
-         // Assertion: !isEmpty()
-         if (givenPosition == 1)                 // Case 1: Remove first entry
-         {
-            result = firstNode.getData();        // Save entry to be removed
-            firstNode = firstNode.getNextNode(); // Remove entry
-         }
-         else                                    // Case 2: Not first entry
-         {
-            Node nodeBefore = getNodeAt(givenPosition - 1);
-            Node nodeToRemove = nodeBefore.getNextNode();
-            result = nodeToRemove.getData();    // Save entry to be removed
-            Node nodeAfter = nodeToRemove.getNextNode();
-            nodeBefore.setNextNode(nodeAfter);  // Remove entry
-         } // end if
-         numberOfEntries--;                     // Update count
-         return result;                         // Return removed entry
-      }
-      else
-         throw new IndexOutOfBoundsException(
-                   "Illegal position given to remove operation.");
-    }
-
-   
-
-    public T replace(int givenPosition, T newEntry) {
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-        // Assertion: !isEmpty()
-        Node desiredNode = getNodeAt(givenPosition);
-        T originalEntry = desiredNode.getData();
-        desiredNode.setData(newEntry);
-        return originalEntry;
-    } else
-      throw new IndexOutOfBoundsException(
-        "Illegal position given to replace operation.");
-    } // end replace
-
-    @Override
-    public T getEntry(int givenPosition) {
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-        // Assertion: !isEmpty()
-        return getNodeAt(givenPosition).getData();
-        } else
-        throw new IndexOutOfBoundsException(
-        "Illegal position given to getEntry operation.");
-    } // end getEntry
-
-    @Override
-    public T[] toArray() {
-        checkIntegrity();
-        // The cast is safe because the new array contains null entries.
-        @SuppressWarnings("unchecked")
-        T[] result = (T[])new Object[numberOfEntries]; // Unchecked cast
-
-        for (int index = 0; index < numberOfEntries; index++) 
-        {
-            //result[index] = bag[index];
-        } // end for
-            
-        return result;
-    } // end toArray
-
-    // Throws an exception if this object is not initialized.
-    private void checkIntegrity() {
-      if (!integrityOK)
-         throw new SecurityException("ArrayBag object is corrupt.");
-    } // end checkIntegrity
-
-    public boolean contains(T anEntry) {
-        boolean found = false;
-        Node currentNode = firstNode;
-        
-        while (!found && (currentNode != null))
-        {
-           if (anEntry.equals(currentNode.getData()))
-              found = true;
-           else
-              currentNode = currentNode.getNextNode();
-        } // end while
-        
-        return found;
-    } // end contains
-
-    public int getLength() {
-        return numberOfEntries;
-    } // end getLength
-
-    public boolean isEmpty() {
-        return numberOfEntries == 0; 
-    } // end isEmpty
 } // end LinkedListWithIterator
-
-
-
-
