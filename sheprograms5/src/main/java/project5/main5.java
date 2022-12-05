@@ -33,7 +33,7 @@ public class main5 {
         System.out.println("Breadth First Traversal: ");
         while(!breadthFirstTraversal.isEmpty())
         {
-            System.out.println(breadthFirstTraversal.dequeue() + ", ");
+            System.out.println(breadthFirstTraversal.dequeue() + "-> ");
         }
 
         System.out.println("");
