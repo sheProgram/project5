@@ -1,9 +1,7 @@
-package project5;
+package ADTPackage;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import ADTPackage.DictionaryInterface;
 
 /**
    A class that implements the ADT dictionary by using a resizable array.
