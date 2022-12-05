@@ -146,7 +146,7 @@ class Vertex<T> implements VertexInterface<T>
         {
             return weight; 
         } // end getWeight
-        } // end Edge
+    } // end Edge
 
     private class NeighborIterator implements Iterator<VertexInterface<T>>
     {
