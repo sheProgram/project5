@@ -28,9 +28,9 @@ public final class LinkedQueue<T> implements QueueInterface<T>
         }
         else {
             lastNode.setNextNode(newNode);
-
-        lastNode = newNode;
         }
+        lastNode = newNode;
+  
     } // end enqueue
 
     public T dequeue() {
@@ -46,8 +46,7 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 
     public T getFront() {
         if (isEmpty()) {
-            System.out.println("Error! The queue is empty!");
-            return null;
+            throw new EmptyQueueException ("Error! Queue is empty...");
         }
         else {
             return firstNode.getData();

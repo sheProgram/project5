@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 */
 public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
-   private Node<T> firstNode;
+   private Node firstNode;
    private int numberOfEntries;
 
     public LinkedListWithIterator()
@@ -23,14 +23,14 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 
     public void add(T newEntry)
     {
-        Node<T> newNode = new Node<>(newEntry);
+        Node newNode = new Node(newEntry);
         if (isEmpty())
         {
             firstNode = newNode;
         }
         else
         {
-            Node<T> lastNode = getNodeAt(numberOfEntries);
+            Node lastNode = getNodeAt(numberOfEntries);
             lastNode.setNextNode(newNode);
         }
         numberOfEntries++;
@@ -40,7 +40,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
     {
         if ((newPosition >= 1) && (newPosition <= numberOfEntries + 1))
         {
-            Node<T> newNode = new Node<>(newEntry);
+            Node newNode = new Node(newEntry);
             if (newPosition == 1)
             {
                 newNode.setNextNode(firstNode);
@@ -48,17 +48,17 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
             }
             else
             {
-                Node<T> nodeBefore = getNodeAt(newPosition - 1);
-                Node<T> nodeAfter = nodeBefore.getNextNode();
+                Node nodeBefore = getNodeAt(newPosition - 1);
+                Node nodeAfter = nodeBefore.getNextNode();
                 newNode.setNextNode(nodeAfter);
                 nodeBefore.setNextNode(newNode);
             }
         }
     }
 
-    private Node<T> getNodeAt(int givenPosition)
+    private Node getNodeAt(int givenPosition)
     {
-        Node<T> currentNode = firstNode;
+        Node currentNode = firstNode;
         for (int counter = 1; counter < givenPosition; counter++)
             currentNode = currentNode.getNextNode();
         return currentNode;
@@ -76,10 +76,10 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
             }
             else
             {
-                Node<T> nodeBefore = getNodeAt(givenPosition - 1);
-                Node<T> nodeToRemove = nodeBefore.getNextNode();
+                Node nodeBefore = getNodeAt(givenPosition - 1);
+                Node nodeToRemove = nodeBefore.getNextNode();
                 result = nodeToRemove.getData();
-                Node<T> nodeAfter = nodeToRemove.getNextNode();
+                Node nodeAfter = nodeToRemove.getNextNode();
                 nodeBefore.setNextNode(nodeAfter);
             }
             numberOfEntries--;
@@ -99,7 +99,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
     {
         if ((givenPosition >= 1 && (givenPosition <= numberOfEntries)))
         {
-            Node<T> desiredNode = getNodeAt(givenPosition);
+            Node desiredNode = getNodeAt(givenPosition);
             T originalEntry = desiredNode.getData();
             desiredNode.setData(newEntry);
             return originalEntry;
@@ -123,7 +123,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
         @SuppressWarnings("unchecked")
         T[] result = (T[]) new Object[numberOfEntries];
         int index = 0;
-        Node<T> currentNode = firstNode;
+        Node currentNode = firstNode;
         while ((index < numberOfEntries) && (currentNode != null))
         {
             result[index] = currentNode.getData();
@@ -136,7 +136,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
     public boolean contains(T anEntry)
     {
         boolean found = false;
-        Node<T> currentNode = firstNode;
+        Node currentNode = firstNode;
         while (!found && (currentNode != null))
         {
             if (anEntry.equals(currentNode.getData()))
@@ -173,7 +173,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
    
 	private class IteratorForLinkedList implements Iterator<T>
 	{
-        private Node<T> nextNode;
+        private Node nextNode;
 
 		private IteratorForLinkedList()
 		{
@@ -189,7 +189,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
         {
             if (hasNext())
             {
-                Node<T> returnNode = nextNode;
+                Node returnNode = nextNode;
                 nextNode = nextNode.next;
                 return returnNode.getData();
             }
@@ -198,10 +198,10 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
         }
 	} // end IteratorForLinkedList
 	
-	private class Node<T>
+	private class Node
 	{
         private T data; // Entry in list
-        private Node<T> next; // Link to next node
+        private Node next; // Link to next node
         
         private Node(T dataPortion)
         {
@@ -209,7 +209,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
             next = null;
         } // end constructor
         
-        private Node(T dataPortion, Node<T> nextNode)
+        private Node(T dataPortion, Node nextNode)
         {
             data = dataPortion;
             next = nextNode;
@@ -225,12 +225,12 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
             data = newData;
         } // end setData
         
-        private Node<T> getNextNode()
+        private Node getNextNode()
         {
             return next;
         } // end getNextNode
         
-        private void setNextNode(Node<T> nextNode)
+        private void setNextNode(Node nextNode)
         {
             next = nextNode;
         } // end setNextNode

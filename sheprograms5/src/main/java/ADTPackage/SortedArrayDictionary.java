@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 */
 public class SortedArrayDictionary<K extends Comparable<? super K>, V> implements DictionaryInterface<K, V>
 {
-	private Entry<K, V>[] dictionary; // Array of entries sorted by search key
+	private Entry<K,V>[] dictionary; // Array of entries sorted by search key
 	private int numberOfEntries; 
     private boolean integrityOK = false;
 	private final static int DEFAULT_CAPACITY = 25;
@@ -29,7 +29,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
     {
         checkCapacity(initialCapacity);
         @SuppressWarnings("unchecked")
-        Entry<K, V>[] tempDictionary = (Entry<K, V>[]) new Entry[initialCapacity];
+        Entry<K,V>[] tempDictionary = (Entry<K,V>[]) new Entry[initialCapacity];
         dictionary = tempDictionary;
         numberOfEntries = 0;
         integrityOK = true;
@@ -52,7 +52,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             else
             {
                 makeRoom(keyIndex);
-                dictionary[keyIndex] = new Entry<K, V>(key, value);
+                dictionary[keyIndex] = new Entry<K,V>(key, value);
                 numberOfEntries++;
                 ensureCapacity();
             }
@@ -120,12 +120,12 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
 
     public Iterator<K> getKeyIterator()
     {
-        return new KeyIterator<>();
+        return new KeyIterator();
     }
 
     public Iterator<V> getValueIterator()
     {
-        return new ValueIterator<>();
+        return new ValueIterator();
     }
 
     public boolean isEmpty()
@@ -167,7 +167,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             throw new SecurityException("Dictionary object is corrupt.");
     }
 
-    private class Entry<K, V>
+    private class Entry<K,V>
     {
         private K key;
         private V value;
@@ -194,7 +194,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
         }
     }
 
-    private class EntryIterator<Entry> implements Iterator<Entry>
+    private class EntryIterator implements Iterator<Entry<K,V>>
     {
         private int nextIndex;
 
@@ -208,12 +208,12 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             return nextIndex < numberOfEntries;
         }
 
-        public Entry next()
+        public Entry<K,V> next()
         {
             if (hasNext())
             {
-                @SuppressWarnings("unchecked")
-                Entry result = (Entry) dictionary[nextIndex];
+                //@SuppressWarnings("unchecked")
+                Entry<K,V> result = (Entry<K,V>) dictionary[nextIndex];
                 nextIndex++;
                 return result;
             }
@@ -222,13 +222,13 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
         }
     }
 
-    private class KeyIterator<K> implements Iterator<K>
+    private class KeyIterator implements Iterator<K>
     {
-        private Iterator<Entry<K, V>> entryIterator;
+        private Iterator<Entry<K,V>> entryIterator;
 
         private KeyIterator()
         {
-            entryIterator = new EntryIterator<Entry<K,V>>();
+            entryIterator = new EntryIterator();
         }
 
         public boolean hasNext()
@@ -238,18 +238,18 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
 
         public K next()
         {
-            Entry<K, V> nextEntry = entryIterator.next();
+            Entry<K,V> nextEntry = entryIterator.next();
             return nextEntry.getKey();
         }
     }
 
-    private class ValueIterator<K> implements Iterator<K>
+    private class ValueIterator implements Iterator<V>
     {
-        private Iterator<Entry<K, V>> entryIterator;
+        private Iterator<Entry<K,V>> entryIterator;
 
         private ValueIterator()
         {
-            entryIterator = new EntryIterator<Entry<K,V>>();
+            entryIterator = new EntryIterator();
         }
 
         public boolean hasNext()
@@ -257,10 +257,10 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             return entryIterator.hasNext();
         }
 
-        public K next()
+        public V next()
         {
-            Entry<K, V> nextEntry = entryIterator.next();
-            return nextEntry.getKey();
+            Entry<K,V> nextEntry = entryIterator.next();
+            return nextEntry.getValue();
         }
     }
 } // end SortedArrayDictionary
