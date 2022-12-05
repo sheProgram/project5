@@ -25,9 +25,6 @@ class Vertex<T> implements VertexInterface<T>
       cost = 0;
    } // end constructor
 
-/* Implementations of the vertex operations go here.
-   . . . */
-
    protected class Edge
    {
       private VertexInterface<T> vertex; // Vertex at end of edge
