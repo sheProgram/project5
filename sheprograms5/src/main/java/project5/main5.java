@@ -30,16 +30,16 @@ public class main5 {
         graph.addEdge("I", "F");
 
         QueueInterface<String> breadthFirstTraversal = graph.getBreadthFirstTraversal("A");
-        System.out.println("Breadth First Traversal: ");
+        System.out.println("BFT: \n-------------------------------------------------------");
         while(!breadthFirstTraversal.isEmpty())
         {
-            System.out.println(breadthFirstTraversal.dequeue() + "-> ");
+            System.out.print(breadthFirstTraversal.dequeue() + "-> ");
         }
 
         System.out.println("");
 
         QueueInterface<String> depthFirstTraversal = graph.getDepthFirstTraversal("A");
-        System.out.println("Depth First Traversal: ");
+        System.out.println("DFT:  \n-------------------------------------------------------");
         while(!depthFirstTraversal.isEmpty())
         {
             System.out.println(depthFirstTraversal.dequeue() + "-> ");
