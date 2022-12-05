@@ -1,5 +1,9 @@
 package project5;
 import ADTPackage.*;
+
+/**
+ * Driver class for running the graph traversal code.
+ */
 public class main5 {
     public static void main (String[] args){
         GraphInterface<String> pgraph = new Graph<>();
