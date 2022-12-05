@@ -40,7 +40,7 @@ public class main5 {
         System.out.println("DFT:  \n-------------------------------------------------------");
         while(!depthFirstTraversal.isEmpty())
         {
-            System.out.println(depthFirstTraversal.dequeue() + "-> ");
+            System.out.print(depthFirstTraversal.dequeue() + "-> ");
         }
     }
 }
