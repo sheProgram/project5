@@ -210,10 +210,7 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
         {
             return nextNode != null;
         }
-        
 
-    }
-}
         public V next()
         {
             V result;
@@ -226,4 +223,6 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
                 throw new NoSuchElementException("Illegal call to next(); iterator is after end of list");
             }
             return result;
-        } // end KeyIterator
+        }
+    } // end KeyIterator
+}
