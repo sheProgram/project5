@@ -7,11 +7,8 @@ import org.junit.Test;
 /**
  * Unit test for simple pgraph.
  */
-public class pgraphTest 
+public class main5Test 
 {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
     public void shouldAnswerWithTrue()
     {
