@@ -28,8 +28,7 @@ public class LinkedStack<T> implements StackInterface<T>
     // @version 5.0
 
   public void push(T newEntry) {
-      Node newNode = new Node(newEntry, topNode);
-      topNode = newNode;
+    topNode = new Node(newEntry, topNode);
   } // end push
 
   // @author Frank M. Carrano, Timothy M. Henry
@@ -78,17 +77,9 @@ public class LinkedStack<T> implements StackInterface<T>
           return data;
       } // end getData
 
-      private void setData(T newData) {
-        data = newData;
-      }
-
       private Node getNextNode() {
           return next;
       } // end getNextNode
-
-      private void setNextNode(Node nextNode) {
-        next = nextNode;
-      }
 
   } // end Node
 
