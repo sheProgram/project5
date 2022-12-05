@@ -142,7 +142,35 @@ private class NeighborIterator implements Iterator<VertexInterface<T>> {
 
 
 public Iterator<Double> getWeightIterator() {
-    return null;
+    return new WeightIterator();
+}
+
+private class WeightIterator implements Iterator<Double>
+{
+    private Iterator<Edge> edges;
+
+    private WeightIterator()
+    {
+        edges = edgeList.getIterator();
+    }
+
+    public boolean hasNext()
+    {
+        return edges.hasNext();
+    }
+
+    public Double next()
+    {
+        double weight;
+        if (edges.hasNext()) {
+            Edge edgeToNextNeighbor = edges.next();
+            weight = edgeToNextNeighbor.getWeight();
+        }
+        else {
+            throw new NoSuchElementException();
+        }
+        return weight;
+    }
 }
 
 public boolean hasNeighbor() {
