@@ -34,14 +34,19 @@ public final class LinkedQueue<T> implements QueueInterface<T>
     } // end enqueue
 
     public T dequeue() {
-        T front = getFront();  
-        firstNode.setData(null);
-        firstNode = firstNode.getNextNode();
-
-        if (firstNode == null) {
-            lastNode = null;
+        if (isEmpty()){
+            throw new EmptyQueueException ("Error! Queue is empty...");
         }
-        return front;
+        else {
+            T front = getFront();  
+            firstNode.setData(null);
+            firstNode = firstNode.getNextNode();
+
+            if (firstNode == null) {
+                lastNode = null;
+            }
+            return front;
+        }
     } // end dequeue
 
     public T getFront() {
