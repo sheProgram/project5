@@ -118,7 +118,7 @@ public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
     public QueueInterface<T> getDepthFirstTraversal(T origin)
     {
         resetVertices();
-        QueueInterface<T> traversalOrder = new LinkedQueue<>();
+        QueueInterface<T> traversalOrder = new LinkedQueue<T>();
         StackInterface<VertexInterface<T>> vertexStack = new LinkedStack<>();
         VertexInterface<T> originVertex = vertices.getValue(origin);
         originVertex.visit();
