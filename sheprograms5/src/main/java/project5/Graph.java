@@ -6,17 +6,13 @@ import ADTPackage.*;
 public final class Graph<T> implements GraphInterface<T> {
 
     private DictionaryInterface<T, VertexInterface<T>> vertices;
-    private int edgeCount = 0;
+    private int edgeCount;
     private boolean[][] edges; 
     private T[] labels;
 
     public Graph()
     {
-        initializeDataFields();
-    }
-
-    private void initializeDataFields() {
-        //vertices = new UnsortedLinkedDictionary<>();
+        //vertices = new SortedArrayDictionary<T, VertexInterface<T>>();
         edgeCount = 0;
     }
 
