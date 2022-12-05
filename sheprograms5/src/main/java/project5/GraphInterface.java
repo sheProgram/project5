@@ -1,4 +1,5 @@
 package project5;
+
 /**
    An interface of methods providing basic operations for directed
    and undirected graphs that are either weighted or unweighted.
@@ -56,5 +57,4 @@ public interface GraphInterface<T>
 
    /** Removes all vertices and edges from this graph resulting in an empty graph. */
    public void clear();
-   
-} // end BasicGraphInterface
+}

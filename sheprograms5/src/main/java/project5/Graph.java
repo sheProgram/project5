@@ -7,11 +7,25 @@ public final class Graph<T> implements GraphInterface<T> {
 
     private DictionaryInterface<T, VertexInterface<T>> vertices;
     private int edgeCount = 0;
-
+    private boolean[][] edges; 
+    private T[] labels;
+    private T[] visitedVertices;
+    private int numberOfVisitedVertices;
+    
     public Graph()
     {
         initializeDataFields();
     }
+    public Graph(int n)
+    {
+        edges = new boolean[n][n]; // All values initially false.
+        labels = (T[]) new Object[n]; // All values initially null.
+        visitedVertices = (T[]) new Object[n]; // All values initially null.
+        numberOfVisitedVertices = 0;
+    }
+
+
+
 
     private void initializeDataFields() {
         //vertices = new SortedLinkedDictionary<T, VertexInterface<T>>();
@@ -111,7 +125,7 @@ public final class Graph<T> implements GraphInterface<T> {
 
     public QueueInterface<T> getDepthFirstTraversal(T origin) {
         resetVertices();
-        QueueInterface<T> traversalOrder = new LinkedQueue<T>();
+        QueueInterface<T> traversalOrder = new LinkedQueue<>();
         StackInterface<VertexInterface<T>> vertexStack = new LinkedStack<>();
 
         VertexInterface<T> originVertex = vertices.getValue(origin);
@@ -135,4 +149,14 @@ public final class Graph<T> implements GraphInterface<T> {
         return traversalOrder;
     } // end getDepthFirstTraversal
 
+
+    public void setLabel(int vertex, T newLabel)
+    {
+        labels[vertex] = newLabel;
+    }
+
+    public void addEdge(int source, int target)
+    {
+        edges[source][target] = true;
+    }
 } // end Graph
