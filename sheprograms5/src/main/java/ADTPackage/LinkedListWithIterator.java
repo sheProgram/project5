@@ -30,7 +30,10 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 /*	< Implementations of the methods of the ADT list go here;
      you can see them in Chapter 12, beginning at Segment 12.7 >
    . . . */
-   
+   public void clear() {      
+      initializeDataFields();  
+   }
+
    public Iterator<T> iterator()
    {
 	   return new IteratorForLinkedList();
@@ -170,9 +173,7 @@ public T next()
     }
 
    
-    public void clear() {        
-    }
-//hi
+
     public T replace(int givenPosition, T newEntry) {
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
         // Assertion: !isEmpty()
