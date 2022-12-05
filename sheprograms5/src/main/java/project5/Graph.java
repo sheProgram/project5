@@ -9,20 +9,10 @@ public final class Graph<T> implements GraphInterface<T> {
     private int edgeCount = 0;
     private boolean[][] edges; 
     private T[] labels;
-    private T[] visitedVertices;
-    private int numberOfVisitedVertices;
-    
+
     public Graph()
     {
         initializeDataFields();
-    }
-
-    public Graph(int n)
-    {
-        edges = new boolean[n][n]; // All values initially false.
-        labels = (T[]) new Object[n]; // All values initially null.
-        visitedVertices = (T[]) new Object[n]; // All values initially null.
-        numberOfVisitedVertices = 0;
     }
 
     private void initializeDataFields() {
