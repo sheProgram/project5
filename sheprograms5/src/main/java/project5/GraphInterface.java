@@ -1,5 +1,5 @@
 package project5;
-
+import ADTPackage.*;
 /**
    An interface of methods providing basic operations for directed
    and undirected graphs that are either weighted or unweighted.
@@ -57,4 +57,16 @@ public interface GraphInterface<T>
 
    /** Removes all vertices and edges from this graph resulting in an empty graph. */
    public void clear();
+
+   /** Performs a breadth-first traversal of this graph.
+       @param origin  An object that labels the origin vertex of the traversal.
+       @return  A queue of labels of the vertices in the traversal, with
+                the label of the origin vertex at the queue's front. */
+    public QueueInterface<T> getBreadthFirstTraversal(T origin);
+
+   /** Performs a depth-first traversal of this graph.
+       @param origin  An object that labels the origin vertex of the traversal.
+       @return  A queue of labels of the vertices in the traversal, with
+                the label of the origin vertex at the queue's front. */
+    public QueueInterface<T> getDepthFirstTraversal(T origin);
 }

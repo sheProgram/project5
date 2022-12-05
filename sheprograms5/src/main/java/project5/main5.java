@@ -1,10 +1,7 @@
 package project5;
 public class main5 {
-    public main5() {
-    }
-
     public static void main (String[] args){
-        Graph graph = new Graph<>();
+        GraphInterface<String> graph = new Graph<>();
         //creating the vertexes
         graph.addVertex("A");
         graph.addVertex("B");
