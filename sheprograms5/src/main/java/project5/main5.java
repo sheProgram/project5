@@ -32,7 +32,7 @@ public class main5 {
         //prints out breadth first and depth first traversal
         System.out.println("Breadth First Traversal: ");
         System.out.println(graph.getBreadthFirstTraversal("A"));
-        System.out.println("\nDepth first Traversal: ");
+        System.out.println("\n Depth first Traversal: ");
         System.out.println(graph.getDepthFirstTraversal("A"));
     }
 }
