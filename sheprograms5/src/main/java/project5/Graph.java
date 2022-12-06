@@ -2,7 +2,9 @@ package project5;
 
 import java.util.Iterator;
 import ADTPackage.*;
-
+/**
+ * A class that defines operations for a defined graph.
+ */
 public class Graph<T extends Comparable<? super T>> implements GraphInterface<T>
 {
     private DictionaryInterface<T, VertexInterface<T>> vertices;
