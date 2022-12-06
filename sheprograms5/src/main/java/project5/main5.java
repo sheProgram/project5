@@ -1,5 +1,6 @@
 package project5;
 import ADTPackage.*;
+import java.util.Iterator;
 
 /**
  * Driver class for running the graph traversal code.
@@ -85,11 +86,11 @@ System.out.println("Root of tree contains " + aTree.getRootData());
 System.out.println("Height of tree is " + aTree.getHeight());
 System.out.println("Tree has " + aTree.getNumberOfNodes() + " nodes");
 
-// // Display nodes in preorder
-// System.out.println("A preorder traversal visits nodes in this order:");
-// Iterator<String> preorder =aTree.getPreorderIterator();
-// while (preorder.hasNext())
-//    System.out.print(preorder.next() + " ");
-// System.out.println();
+// Display nodes in preorder
+System.out.println("A preorder traversal visits nodes in this order:");
+Iterator<String> preorder =aTree.getPreorderIterator();
+while (preorder.hasNext())
+   System.out.print(preorder.next() + " ");
+System.out.println();
      }
 }
