@@ -7,7 +7,7 @@ import java.util.Iterator;
    @version 5.0
 */
 public interface DictionaryInterface<K, V>
-{  // See Segment 20.4 for a commented version.
+{  
    public V add(K key, V value);
    public V remove(K key);
    public V getValue(K key);
