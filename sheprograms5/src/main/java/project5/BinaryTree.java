@@ -91,10 +91,44 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
         root = null;
     } // end clear
 
+    private class PreorderIterator implements Iterator<T>{
+        private StackInterface<BinaryNode<T>> nodeStack;
+        private BinaryNode<T> currentNode;
+
+        public PreorderIterator(){
+            nodeStack = new LinkedStack<>();
+            currentNode = root;
+        }
+
+        public boolean hasNext() {
+            return !nodeStack.isEmpty() || (currentNode != null);
+        }
+
+        public T next(){
+            BinaryNode<T> nextNode = null;
+
+            while(currentNode != null){
+                nodeStack.push(currentNode);
+                currentNode = currentNode.getLeftChild();
+            }
+            if (!nodeStack.isEmpty()){
+                nextNode = nodeStack.pop();
+                currentNode = nextNode.getRightChild();
+            }
+            else{
+                throw new NoSuchElementException();
+            }
+            return nextNode.getData();
+        }
+
+        public void remove(){
+            throw new UnsupportedOperationException();
+        }
+    }
+
     @Override
     public Iterator<T> getPreorderIterator() {
-        // return new PreorderIterator();
-        return null;
+        return new PreorderIterator();
     }
 
     @Override
