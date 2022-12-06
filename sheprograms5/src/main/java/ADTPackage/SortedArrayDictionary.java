@@ -117,6 +117,49 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
     {
         return locateIndex(key) < numberOfEntries;
     }
+    //21.20
+    private class ValueIterator implements Iterator<V>
+    {
+        private Iterator<Entry<K,V>> entryIterator;
+
+        private ValueIterator()
+        {
+            entryIterator = new EntryIterator();
+        }
+
+        public boolean hasNext()
+        {
+            return entryIterator.hasNext();
+        }
+
+        public V next()
+        {
+            Entry<K,V> nextEntry = entryIterator.next();
+            return nextEntry.getValue();
+        }
+    }
+
+//21.20
+    private class KeyIterator implements Iterator<K>
+    {
+        private Iterator<Entry<K,V>> entryIterator;
+
+        private KeyIterator()
+        {
+            entryIterator = new EntryIterator();
+        }
+
+        public boolean hasNext()
+        {
+            return entryIterator.hasNext();
+        }
+
+        public K next()
+        {
+            Entry<K,V> nextEntry = entryIterator.next();
+            return nextEntry.getKey();
+        }
+    }
 
     public Iterator<K> getKeyIterator()
     {
@@ -222,45 +265,4 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
         }
     }
 
-    private class KeyIterator implements Iterator<K>
-    {
-        private Iterator<Entry<K,V>> entryIterator;
-
-        private KeyIterator()
-        {
-            entryIterator = new EntryIterator();
-        }
-
-        public boolean hasNext()
-        {
-            return entryIterator.hasNext();
-        }
-
-        public K next()
-        {
-            Entry<K,V> nextEntry = entryIterator.next();
-            return nextEntry.getKey();
-        }
-    }
-
-    private class ValueIterator implements Iterator<V>
-    {
-        private Iterator<Entry<K,V>> entryIterator;
-
-        private ValueIterator()
-        {
-            entryIterator = new EntryIterator();
-        }
-
-        public boolean hasNext()
-        {
-            return entryIterator.hasNext();
-        }
-
-        public V next()
-        {
-            Entry<K,V> nextEntry = entryIterator.next();
-            return nextEntry.getValue();
-        }
-    }
-} // end SortedArrayDictionary
+} 
