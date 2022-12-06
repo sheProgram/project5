@@ -50,6 +50,14 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
          root.setRightChild(rightTree.root);
 	} // end initializeTree
 
+    /* Implementations of setRootData, getRootData, getHeight, getNumberOfNodes,
+   isEmpty, clear, and the methods specified in TreeIteratorInterface are here.
+   . . . */
+
+    public void setRootData(T rootData) {
+        root.setData(rootData);  
+    } // end setRootData
+
     public T getRootData() {
         if (isEmpty()) {
             throw new EmptyTreeException("Error! The tree is empty!");
@@ -57,31 +65,31 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
         else {
             return root.getData();
         }
-    }
+    } // end getRootData
 
-    @Override
     public int getHeight() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+        int height = 0;
+        if (root != null) {
+           height = root.getHeight();
+        }
+        return height;
+    } // end getHeight
 
-    @Override
     public int getNumberOfNodes() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+        int numberOfNodes = 0;
+        if (root != null) {
+           numberOfNodes = root.getNumberOfNodes();
+        }
+        return numberOfNodes;
+    } // end getNumberOfNodes
 
-    @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        return root == null;
+    } // end isEmpty
 
-    @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        
-    }
+        root = null;
+    } // end clear
 
     @Override
     public Iterator<T> getPreorderIterator() {
@@ -106,15 +114,4 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
         // TODO Auto-generated method stub
         return null;
     }
-
-    @Override
-    public void setRootData(T rootData) {
-        // TODO Auto-generated method stub
-        
-    }
-
-/* Implementations of setRootData, getRootData, getHeight, getNumberOfNodes,
-   isEmpty, clear, and the methods specified in TreeIteratorInterface are here.
-   . . . */
-
 } // end BinaryTree
