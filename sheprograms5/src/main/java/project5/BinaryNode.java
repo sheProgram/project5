@@ -8,7 +8,7 @@ package project5;
 */
 class BinaryNode<T>
 {
-   private T             data;
+   private T data;
    private BinaryNode<T> leftChild;  // Reference to left child
    private BinaryNode<T> rightChild; // Reference to right child
 
