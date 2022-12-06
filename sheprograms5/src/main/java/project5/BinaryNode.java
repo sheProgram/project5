@@ -97,7 +97,16 @@ class BinaryNode<T>
        @return  The number of nodes in the subtree rooted at this node. */
    public int getNumberOfNodes()
    {
-    return 0;
+      int leftNumber = 0;
+      int rightNumber = 0;
+   
+      if (leftChild != null)
+         leftNumber = leftChild.getNumberOfNodes();
+       
+      if (rightChild != null)
+         rightNumber = rightChild.getNumberOfNodes();
+       
+      return 1 + leftNumber + rightNumber;
       // < See Segment 25.10. >
    } // end getNumberOfNodes
    
@@ -105,8 +114,19 @@ class BinaryNode<T>
        @return  The height of the subtree rooted at this node. */
    public int getHeight()
    {
-    return 0;
+      return getHeight(this); // Call private getHeight
       // < See Segment 25.10. >
+   } // end getHeight
+
+   private int getHeight(BinaryNode<T> node)
+   {
+      int height = 0;
+   
+      if (node != null) {
+         height = 1 + Math.max(getHeight(node.getLeftChild()),
+                              getHeight(node.getRightChild()));
+      }                  
+      return height;
    } // end getHeight
 
    /** Copies the subtree rooted at this node.
@@ -122,4 +142,5 @@ class BinaryNode<T>
    
       return newRoot;
    } // end copy
+   // < See Segment 25.5 >
 } // end BinaryNode
