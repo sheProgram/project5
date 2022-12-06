@@ -1,8 +1,6 @@
 package project5;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-import ADTPackage.*; // Needed by tree iterators
 
 /**
    A class that implements the ADT binary tree.
