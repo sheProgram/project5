@@ -11,15 +11,14 @@ Erika Ledesma, euledesma@cpp.edu, erikajledesma
 
     Roles & Contribution
 
-Mohraiel Matta: 
+Mohraiel Matta: Worked on Unit Test Cases, Main5.java (Driver Class), GetDepthTraversal Method
 
-Erika Ledesma: 
+Erika Ledesma: Created javadoc, GetDepthTraversal Method, ListWithIterator Source Code
 
-Tiffany Truong:
+Tiffany Truong: Worked on Unit Test Cases, GetBreadthTraversal Method, Tree Files Source Code 
 
-Extra Features: Used Maven
+- We all worked on adding the other source code necessary for project 5. 
 
-**Javadoc start page**: 
+Extra Features: Used Maven, Unit Test Cases, Started Task 3
 
-
-**Link to Video**:
+**Javadoc start page**: https://github.com/sheProgram/proj5/blob/main/javaDoc/index.html
