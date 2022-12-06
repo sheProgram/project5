@@ -113,7 +113,13 @@ class BinaryNode<T>
        @return  The root of a copy of the subtree rooted at this node. */
    public BinaryNode<T> copy()
    {
-    return leftChild;
-      // < See Segment 25.5. >
+      BinaryNode<T> newRoot = new BinaryNode<>(data);
+      if (leftChild != null)
+         newRoot.setLeftChild(leftChild.copy());
+   
+      if (rightChild != null)
+         newRoot.setRightChild(rightChild.copy());
+   
+      return newRoot;
    } // end copy
 } // end BinaryNode
