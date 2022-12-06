@@ -31,7 +31,9 @@ public class main5 {
         System.out.println("BFT: \n-------------------------------------------------------");
         while(!breadthFirstTraversal.isEmpty())
         {
-            System.out.print(breadthFirstTraversal.dequeue() + "-> ");
+            System.out.print(breadthFirstTraversal.dequeue());
+            System.out.print("->" );
+        
         }
 
         System.out.println("");
@@ -40,7 +42,8 @@ public class main5 {
         System.out.println("DFT:  \n-------------------------------------------------------");
         while(!depthFirstTraversal.isEmpty())
         {
-            System.out.print(depthFirstTraversal.dequeue() + "-> ");
+            System.out.print(depthFirstTraversal.dequeue());
+            System.out.print("->" );
         }
     }
 }
