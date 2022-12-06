@@ -44,12 +44,21 @@ class BinaryNode<T>
       data = newData;
    } // end setData
 
+   /*   Implementations of getRightChild, setRightChild, and hasRightChild
+     are here and are analogous to their left-child counterparts. */
+
    /** Retrieves the left child of this node.
        @return  A reference to this node's left child. */
    public BinaryNode<T> getLeftChild()
    {
       return leftChild;
    } // end getLeftChild
+   
+   /** Retrieves the right child of this node. 
+      @return A reference to this node's right child.*/
+   public BinaryNode<T> getRightChild() {
+      return rightChild;
+   } // end getRightChild
 
    /** Sets this node’s left child to a given node.
        @param newLeftChild  A node that will be the left child. */
@@ -58,6 +67,8 @@ class BinaryNode<T>
       leftChild = newLeftChild;
    } // end setLeftChild
 
+   /** Sets this node's right child to a given node. 
+      @param newRightChild A node that will be the right child. */
    public void setRightChild(BinaryNode<T> newRightChild) {
         rightChild = newRightChild;
    } // end setRightChild
@@ -69,8 +80,11 @@ class BinaryNode<T>
       return leftChild != null;
    } // end hasLeftChild
 
-/*   Implementations of getRightChild, setRightChild, and hasRightChild
-     are here and are analogous to their left-child counterparts. */
+   /** Detects whether this node has a right child. 
+      @return True if the node has a right child. */
+   public boolean hasRightChild() {
+      return rightChild != null;
+   }
    
    /** Detects whether this node is a leaf.
     @return  True if the node is a leaf. */
