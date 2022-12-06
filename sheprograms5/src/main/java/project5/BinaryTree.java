@@ -50,10 +50,13 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
          root.setRightChild(rightTree.root);
 	} // end initializeTree
 
-    @Override
     public T getRootData() {
-        // TODO Auto-generated method stub
-        return null;
+        if (isEmpty()) {
+            throw new EmptyTreeException("Error! The tree is empty!");
+        }
+        else {
+            return root.getData();
+        }
     }
 
     @Override
