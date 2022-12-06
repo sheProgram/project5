@@ -14,52 +14,7 @@ public class LinkedStack<T> implements StackInterface<T>
       topNode = null;
    } // end default constructor
 
-   /**
-     * Removes all entries from this bag.
-     * 
-     * @author Frank M. Carrano, Timothy M. Henry
-     * @version 5.0
-     */
-    public void clear() {
-      topNode = null;
-  } // end clear
 
-    // @author Frank M. Carrano, Timothy M. Henry
-    // @version 5.0
-
-  public void push(T newEntry) {
-    topNode = new Node(newEntry, topNode);
-  } // end push
-
-  // @author Frank M. Carrano, Timothy M. Henry
-  // @version 5.0
-  public T peek() {
-      if (isEmpty())
-          throw new EmptyStackException();
-      else
-          return topNode.getData();
-  } // end peek
-
-  // @author Frank M. Carrano, Timothy M. Henry
-  // @version 5.0
-  public T pop() {
-      T top = peek(); // Might throw EmptyStackException
-
-      // Assertion: topNode != null
-      topNode = topNode.getNextNode();
-
-      return top;
-  } // end pop
-
-  /**
-   * @author Frank M. Carrano, Timothy M. Henry
-   * @version 5.0
-   */
-  public boolean isEmpty() {
-      return topNode == null;
-  } // end isEmpty
-
-  // @version 5.0 */
   private class Node {
       private T data; // Entry in bag
       private Node next; // Link to next node
@@ -82,5 +37,36 @@ public class LinkedStack<T> implements StackInterface<T>
       } // end getNextNode
 
   } // end Node
+  public void clear() {
+    topNode = null;
+} // end clear
+
+
+
+public void push(T newEntry) {
+  topNode = new Node(newEntry, topNode);
+} // end push
+
+
+public T peek() {
+    if (isEmpty())
+        throw new EmptyStackException();
+    else
+        return topNode.getData();
+} // end peek
+
+
+public T pop() {
+    T top = peek(); 
+
+    // Assertion: topNode != null
+    topNode = topNode.getNextNode();
+
+    return top;
+} // end pop
+
+public boolean isEmpty() {
+    return topNode == null;
+} // end isEmpty
 
 } // end LinkedStack

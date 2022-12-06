@@ -20,6 +20,60 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
         firstNode = null;
         numberOfEntries = 0;
     } // end default constructor
+    public boolean contains(T anEntry)
+    {
+        boolean found = false;
+        Node currentNode = firstNode;
+        while (!found && (currentNode != null))
+        {
+            if (anEntry.equals(currentNode.getData()))
+            {
+                found = true;
+            }
+            else
+            {
+                currentNode = currentNode.getNextNode();
+            }
+        }
+        return found;
+    }
+    private class Node
+	{
+        private T data; // Entry in list
+        private Node next; // Link to next node
+        
+        private Node(T dataPortion)
+        {
+            data = dataPortion;
+            next = null;
+        } // end constructor
+        
+        private Node(T dataPortion, Node nextNode)
+        {
+            data = dataPortion;
+            next = nextNode;
+        } // end constructor
+        
+        private T getData()
+        {
+            return data;
+        } // end getData
+        
+        private void setData(T newData)
+        {
+            data = newData;
+        } // end setData
+        
+        private Node getNextNode()
+        {
+            return next;
+        } // end getNextNode
+        
+        private void setNextNode(Node nextNode)
+        {
+            next = nextNode;
+        } // end setNextNode
+	} // end Node
 
     public void add(T newEntry)
     {
@@ -131,62 +185,6 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
             index++;
         }
         return result;
-    }
-    private class Node
-	{
-        private T data; // Entry in list
-        private Node next; // Link to next node
-        
-        private Node(T dataPortion)
-        {
-            data = dataPortion;
-            next = null;
-        } // end constructor
-        
-        private Node(T dataPortion, Node nextNode)
-        {
-            data = dataPortion;
-            next = nextNode;
-        } // end constructor
-        
-        private T getData()
-        {
-            return data;
-        } // end getData
-        
-        private void setData(T newData)
-        {
-            data = newData;
-        } // end setData
-        
-        private Node getNextNode()
-        {
-            return next;
-        } // end getNextNode
-        
-        private void setNextNode(Node nextNode)
-        {
-            next = nextNode;
-        } // end setNextNode
-	} // end Node
-
-
-    public boolean contains(T anEntry)
-    {
-        boolean found = false;
-        Node currentNode = firstNode;
-        while (!found && (currentNode != null))
-        {
-            if (anEntry.equals(currentNode.getData()))
-            {
-                found = true;
-            }
-            else
-            {
-                currentNode = currentNode.getNextNode();
-            }
-        }
-        return found;
     }
 
     public int getLength()

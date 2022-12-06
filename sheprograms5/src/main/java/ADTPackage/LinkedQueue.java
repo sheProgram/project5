@@ -19,6 +19,10 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 		lastNode = null;
 	} // end default constructor
 
+    public boolean isEmpty() {
+        return (firstNode == null) && (lastNode == null);
+    } // end isEmpty
+
 //  < Implementations of the queue operations go here. >
     public void enqueue(T newEntry) {
         Node newNode = new Node(newEntry, null);
@@ -57,10 +61,6 @@ public final class LinkedQueue<T> implements QueueInterface<T>
             return firstNode.getData();
         }
     } // end getFront
-
-    public boolean isEmpty() {
-        return (firstNode == null) && (lastNode == null);
-    } // end isEmpty
 
     public void clear() {
         firstNode = null;
