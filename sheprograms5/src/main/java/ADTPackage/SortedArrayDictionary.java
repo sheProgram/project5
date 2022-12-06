@@ -58,7 +58,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             }
             return result;
         }
-    }
+    } // end add
 
     private int locateIndex(K key)
     {
@@ -68,7 +68,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             index++;
         }
         return index;
-    }
+    } // end locateIndex 
 
     private void makeRoom(int keyIndex)
     {
@@ -76,7 +76,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
         {
             dictionary[index + 1] = dictionary[index];
         }
-    }
+    } // end makeRoom 
 
     public V remove(K key)
     {
@@ -90,7 +90,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             numberOfEntries--;
         }
         return result;
-    }
+    } // end remove
 
     private void removeArrayEntry(int keyIndex)
     {
@@ -99,7 +99,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             dictionary[fromIndex - 1] = dictionary[fromIndex];
         }
         dictionary[numberOfEntries - 1] = null;
-    }
+    } // end removeArrayEntry
 
     public V getValue(K key)
     {
@@ -111,12 +111,13 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             result = dictionary[keyIndex].getValue();
         }
         return result;
-    }
+    } // end getValue
 
     public boolean contains(K key)
     {
         return locateIndex(key) < numberOfEntries;
-    }
+    } // end contains
+
     //21.20
     private class ValueIterator implements Iterator<V>
     {
@@ -137,9 +138,9 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
             Entry<K,V> nextEntry = entryIterator.next();
             return nextEntry.getValue();
         }
-    }
+    } 
 
-//21.20
+    //21.20
     private class KeyIterator implements Iterator<K>
     {
         private Iterator<Entry<K,V>> entryIterator;
@@ -174,17 +175,17 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
     public boolean isEmpty()
     {
         return numberOfEntries == 0;
-    }
+    } // end isEmpty
 
     public int getSize()
     {
         return numberOfEntries;
-    }
+    } // end getSize
 
     public void clear() 
     {
         numberOfEntries = 0;
-    }
+    } // end clear
 
     private void ensureCapacity()
     {
@@ -208,7 +209,7 @@ public class SortedArrayDictionary<K extends Comparable<? super K>, V> implement
     {
         if (!integrityOK)
             throw new SecurityException("Dictionary object is corrupt.");
-    }
+    } // end checkIntegrity
 
     private class Entry<K,V>
     {
